@@ -2,6 +2,8 @@
 
 The current OMP-native adaptation is maintained in `skills/`; its provenance and intentional differences are recorded in [omp-porting.md](docs/omp-porting.md) and [omp-provenance.json](tools/omp-provenance.json). All original notices below are retained for attribution. Their previous-runtime layouts and mechanisms describe the historical selected port, not active OMP setup instructions.
 
+The consolidated engineering contracts are newly authored integrations of the governed local review, prose-preservation, simplification and native-team workflows. Their reviewed source identities are recorded in provenance; shared source skills remain untouched. Simplification guidance also follows the MIT-licensed Ponytail approach at `DietrichGebert/ponytail@45f7d2f83fb430a65fd512a98ad7b14d79e06636`; no additional runtime package is bundled.
+
 ## Historical selected-port notice
 
 This plugin is a port of upstream MIT-licensed work. The port's modifications and additions are (c) 2026 Michael Denyer and are also released under the [MIT license](LICENSE). All upstream copyright notices and license terms are preserved.

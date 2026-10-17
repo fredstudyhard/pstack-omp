@@ -1,6 +1,6 @@
 # Reviewer Prompt Template
 
-Build each reviewer subagent's prompt from this template, filling in the placeholders.
+Build each authorized deep/adversarial reviewer's prompt from this template, filling in the placeholders. This template does not authorize delegation or additional reviewers.
 
 ---
 
@@ -13,6 +13,14 @@ The author's stated intent for this change:
 > {INTENT}
 
 Review whether the code achieves this intent well. Do NOT question the intent itself. Assume the goal is correct and challenge the execution.
+
+## Shared Review Contract
+
+{REQUIREMENTS_NON_GOALS_REVISION_BASE_AND_KNOWN_VERIFICATION}
+
+{SHARED_PROCEDURE_AND_FINDING_CONTRACT}
+
+Follow the shared procedure in [Interrogate](../SKILL.md) and [finding/evidence contract](review-contract.md). Requirements and consumer/dispatch tracing come before polish. Stay read-only, with no edits or side effects. Stop as incomplete if required evidence is missing. Return the native finding fields; do not infer correctness from a partial packet.
 
 ## Code Under Review
 
@@ -30,33 +38,14 @@ Review whether the code achieves this intent well. Do NOT question the intent it
 
 Review the code through every lens in the rubric and the code-quality lens above that you find relevant. Do not force lenses that don't apply. A simple bug fix does not need paragraphs about architectural integrity.
 
-For each finding, provide:
+For each actionable finding, use the native schema supplied in the shared finding contract, including patch-anchored location, priority, confidence, concrete trigger, execution path and impact. A concrete suggestion is optional.
 
-1. **Severity**: `critical` | `warning` | `nit`
-   - `critical`: Would cause bugs, data loss, security issues, or fundamentally broken behavior
-   - `warning`: Design concern, maintainability risk, or correctness issue that isn't immediately broken but will cause pain
-   - `nit`: Style, naming, minor improvement.
-2. **Finding**: What the problem is, in concrete terms. Reference specific lines/functions.
-3. **Evidence**: Why you believe this is a problem. Show your reasoning. Don't just assert.
-4. **Suggestion** (optional): What you'd do instead, only if you have a concrete alternative.
+For adversarial triage you may additionally label candidates `critical` (bugs, data loss, security issues or broken behavior), `warning` (demonstrable design, maintainability or latent correctness risks), or `nit` (style, naming or minor improvement). These labels do not replace `P0`–`P3` priorities. Keep nits and other candidates failing the shared evidence bar separate from actionable findings for the lead's Noted/Dismissed accounting.
 
-A good finding references specific code, not vague concerns ("this could be better"). It distinguishes between "this is broken" and "I would have done this differently". It considers the stated intent. A finding that ignores the context of what's being built is a bad finding.
+A good finding references specific code, not vague concerns ("this could be better"). It distinguishes between "this is broken" and "I would have done this differently" and considers the stated intent. A finding that ignores context is a bad finding.
 
-Do not restate what the code does without identifying a problem. Do not praise the code. If you find nothing wrong, say "no findings" and stop. An empty review is a valid outcome.
+Do not restate what the code does without identifying a problem. Do not praise the code. If you find nothing wrong, say "no findings" and provide the required coverage/verification explanation without inventing issues. An empty review is a valid outcome.
 
 ## Output
 
-Return your findings as a structured list:
-
-```
-## Findings
-
-### 1. [Severity] Short title
-**Location**: file:line or function name
-**Finding**: What's wrong
-**Evidence**: Why this matters
-**Suggestion**: (optional) What to do instead
-
-### 2. [Severity] Short title
-...
-```
+Return a structured list of actionable findings using the shared schema, with a supported correctness verdict and coverage explanation when the review is complete. If incomplete, return the missing evidence and no unsupported correctness verdict. Include optional triage candidates separately with their evidence, severity label and suggestion; the lead decides which merit action.

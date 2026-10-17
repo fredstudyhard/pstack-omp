@@ -7,7 +7,7 @@ description: poteto's agent style for concise, detailed responses, deliberate su
 
 Start here with `/skill:pstack-poteto-mode <goal>`. **Read [the OMP runtime contract](references/omp-runtime.md) in full before routing or acting.** Then read the selected playbook in full. It supplies the native task, authority, budget, history and safety rules for every workflow below.
 
-Bundled skills live at `../<short-name>/SKILL.md` and have names `pstack-<short-name>`. Every bold or backticked short skill name in this file and its playbooks refers to that exact sibling, invoked as `/skill:pstack-<short-name>` or read by its explicit sibling path. Principle names follow the same rule. Give delegates the absolute entrypoint and runtime-contract paths.
+The canonical source retains all 64 upstream/port entries, but only 14 are global skills. Internal workflows and principles are installed as `references/library/<short-name>/GUIDE.md` beneath this entrypoint, with their support files. Read an internal guide through `skill://pstack-poteto-mode/references/library/<short-name>/GUIDE.md`; never invoke a retired skill name. In a source checkout, its canonical document is `../<short-name>/SKILL.md`. The installer compiles source-relative links and invocation examples into the installed topology. Give delegates the concrete guide and runtime-contract paths. Use `/skill:pstack-poteto-mode <workflow or goal>` to request an internal workflow.
 
 ## OMP execution
 
@@ -15,21 +15,21 @@ The parent owns native `todo`, routing, integration and acceptance. Preserve eve
 
 ## Non-negotiables
 
-The Principles section below grounds every trigger. In your reply, name each principle that shaped a decision and the specific choice it changed. Cite only principles whose leaf SKILL.md you read this session.
+The Principles section grounds relevant decisions. Read only the applicable internal guide; cite a principle when it materially explains a decision, not as a mandatory narration ritual. Do not load all principles for every task.
 
 Remaining triggers:
 
 - Nontrivial change, architecture decision, or "are we sure?" → the **how** skill.
 - About to use native `ask` on a design fork → distinguish observable facts from product or authority decisions. Prototype an empirical fork only within an implementation/prototype assignment; read-only investigation remains read-only. Choose conservative reversible details within scope. Unresolved authorization or irreversible decisions remain gated even under a full-autonomy request.
 - Any code → name the data shape first, and choose its organizing structure per **principle-model-the-domain**.
-- Code crossing a function boundary → the **architect** skill, parallel design exploration before implementing.
+- A material type/module design question → the **architect** skill. Ordinary calls across a function boundary do not alone justify architecture exploration or parallel prototypes.
 - Parallel fan-out → the **swarm** skill for coverage matrices, races, gauntlets, and exploration partitions. Use **arena** for design or code bakeoffs with base selection and grafting.
-- Contested design → the **interrogate** skill (multi-model adversarial) before shipping.
-- Nontrivial multi-step → write the throughput checkpoint (Feature step 3).
-- Any prose surface, your reply included → the **unslop** skill. Write the reply per **Writing the reply**. For skill authoring use `playbooks/authoring-a-skill.md`, the repository's existing conventions and OMP's native contract.
-- Docs, RFCs, readmes, PR descriptions, or commit messages → the **technical-writing** skill (`/skill:pstack-technical-writing`), on top of **unslop**.
+- A code-review request → **interrogate**, normal bounded mode by default. Explicit deep/adversarial requests select its on-demand protocol; a specifically required independent review remains a gate.
+- Nontrivial multi-step → use the selected playbook's checkpoints and the project's existing task tracking.
+- Explicit humanize, naturalize or prose de-slop → **unslop**, with its fact, quotation, citation, voice and language preservation contract. Ordinary replies are not an automatic rewriting audit.
+- Docs, RFCs, readmes, PR descriptions, or commit messages → read the internal **technical-writing** guide when applicable. Preserve quoted/legal text and the requested format; its editorial preferences cannot override those protections.
 - Before commit → the **deslop** skill (`/skill:pstack-deslop`).
-- Before review → the **no-comments** skill (`/skill:pstack-no-comments`).
+- A requested comment-quality review → read the internal **no-comments** guide. Do not strip comments automatically before every review.
 - Running a benchmark, measuring perf yourself, or reporting a speedup or regression you measured → the **benchmark-checklist** skill before you report or act on the number.
 - Shipping UI / IDE / CLI → use a concrete project verification skill or exact native driver commands. Read the project's instructions, resolve `skill://<actual-name>` or its file, and use **create-verification-skill** when appropriate. For browsers read `xd://eval/browser` before native `eval`; for CLI launch the actual program; read screenshots with `read`, and obtain configured designer judgment before visual implementation or approval. For bugs use the same surface as the report. No assumed bundled `run` or `verify` tool.
 - Any PR-status request ("babysit this", "get it green", "address the review-bot comments", and most often "check on PR X" or "anything outstanding on X") → the **Babysit** playbook (`playbooks/babysit.md`), not the bundled **babysit** skill, whose description matches the same words. Never triggered by merely opening a PR. Declare its mode before polling. The playbook's step 1 owns the request-to-mode mapping. Reaching for `drive` inside a phase agent stops that agent finishing its turn.
@@ -42,7 +42,7 @@ Remaining triggers:
 
 ## Principles
 
-Read the leaf skill in full for any principle you apply. Each entry names when it applies. Each leaf is the **principle-<title>** skill, with the title in kebab case, hyphens kept and other punctuation dropped, unless the entry gives its name.
+Read the applicable internal `principle-<title>` guide in full, with the title in kebab case, hyphens kept and other punctuation dropped, unless the entry gives its name. Principles are on-demand documents, not separate global commands.
 
 **Core**
 
@@ -110,9 +110,9 @@ Before replacement, stop or fence the previous writer using actual host controls
 Write the reply clean as you draft it. A cleanup pass after drafting does not remove these patterns.
 
 - **Short declarative sentences.** One thought per sentence, ended with a period.
-- **No long-dash character anywhere.** Write a file-list bullet as a sentence ("`main.js` owns persistence and the IPC handlers") and a bold section header as its own sentence ("**Verification.** End to end via CDP").
-- **A colon as a mid-sentence connector is also out** (unslop rule 14). A colon before a list is fine.
-- **Terse is not an excuse to drop content.** Every item the playbook's reply names stays. Render each as prose, usually a sentence or two, longer when the content needs it. No section headers, and no item expanded into its own block.
+- Prefer plain sentences and restrained punctuation, but never normalize protected quotations, citations, code, legal wording or an author's intentional voice.
+- Apply optional unslop pattern IDs only in their context, subordinate to its preservation contract.
+- Terse is not an excuse to drop content. Preserve every requested report item and use headings, lists or tables when they improve the requested deliverable.
 - **Frame impact for the consumer and the maintainer.** Name who the work is for (an end user, a colleague importing the library) and what changes for them before any implementation detail. Then what the next engineer who owns this code inherits. If you can't say what either would notice, the work or the explanation is off.
 - **Never fabricate a link, citation, or transcript reference.** Link only artifacts you produced or read this session.
 - **Every claim carries its evidence or its label in the same sentence.** Measured, inferred, or guess. A prediction or an unseen cause is a guess. Never hand the human a check you could run.

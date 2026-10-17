@@ -9,7 +9,8 @@
       "source": "original",
       "entrypoint": "skill://pstack-architect",
       "path": "skills/architect/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "arena",
@@ -17,55 +18,62 @@
       "source": "original",
       "entrypoint": "skill://pstack-arena",
       "path": "skills/arena/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "automate-me",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-automate-me",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/automate-me/GUIDE.md",
       "path": "skills/automate-me/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "babysit",
       "kind": "workflow",
       "source": "selected-port",
-      "entrypoint": "skill://pstack-babysit",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/babysit/GUIDE.md",
       "path": "skills/babysit/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "benchmark-checklist",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-benchmark-checklist",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/benchmark-checklist/GUIDE.md",
       "path": "skills/benchmark-checklist/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "blast-radius",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-blast-radius",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/blast-radius/GUIDE.md",
       "path": "skills/blast-radius/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "bro",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-bro",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/bro/GUIDE.md",
       "path": "skills/bro/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "correct",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-correct",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/correct/GUIDE.md",
       "path": "skills/correct/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "create-verification-skill",
@@ -73,7 +81,8 @@
       "source": "original",
       "entrypoint": "skill://pstack-create-verification-skill",
       "path": "skills/create-verification-skill/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "deslop",
@@ -81,39 +90,44 @@
       "source": "selected-port",
       "entrypoint": "skill://pstack-deslop",
       "path": "skills/deslop/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "figure-it-out",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-figure-it-out",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/figure-it-out/GUIDE.md",
       "path": "skills/figure-it-out/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "fix-ci",
       "kind": "workflow",
       "source": "selected-port",
-      "entrypoint": "skill://pstack-fix-ci",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/fix-ci/GUIDE.md",
       "path": "skills/fix-ci/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "fix-merge-conflicts",
       "kind": "workflow",
       "source": "selected-port",
-      "entrypoint": "skill://pstack-fix-merge-conflicts",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/fix-merge-conflicts/GUIDE.md",
       "path": "skills/fix-merge-conflicts/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "get-pr-comments",
       "kind": "workflow",
       "source": "selected-port",
-      "entrypoint": "skill://pstack-get-pr-comments",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/get-pr-comments/GUIDE.md",
       "path": "skills/get-pr-comments/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "how",
@@ -121,15 +135,17 @@
       "source": "original",
       "entrypoint": "skill://pstack-how",
       "path": "skills/how/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "in-your-own-words",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-in-your-own-words",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/in-your-own-words/GUIDE.md",
       "path": "skills/in-your-own-words/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "interrogate",
@@ -137,15 +153,17 @@
       "source": "original",
       "entrypoint": "skill://pstack-interrogate",
       "path": "skills/interrogate/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "ketchup",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-ketchup",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/ketchup/GUIDE.md",
       "path": "skills/ketchup/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "maintain-verification-skill",
@@ -153,31 +171,35 @@
       "source": "original",
       "entrypoint": "skill://pstack-maintain-verification-skill",
       "path": "skills/maintain-verification-skill/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "make-bot-ui",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-make-bot-ui",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/make-bot-ui/GUIDE.md",
       "path": "skills/make-bot-ui/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "make-pr-easy-to-review",
       "kind": "workflow",
       "source": "selected-port",
-      "entrypoint": "skill://pstack-make-pr-easy-to-review",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/make-pr-easy-to-review/GUIDE.md",
       "path": "skills/make-pr-easy-to-review/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "no-comments",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-no-comments",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/no-comments/GUIDE.md",
       "path": "skills/no-comments/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "poteto-help",
@@ -185,7 +207,8 @@
       "source": "original",
       "entrypoint": "skill://pstack-poteto-help",
       "path": "skills/poteto-help/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "poteto-mode",
@@ -193,231 +216,260 @@
       "source": "original",
       "entrypoint": "skill://pstack-poteto-mode",
       "path": "skills/poteto-mode/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "principle-attack-the-premise",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-attack-the-premise",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-attack-the-premise/GUIDE.md",
       "path": "skills/principle-attack-the-premise/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-boundary-discipline",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-boundary-discipline",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-boundary-discipline/GUIDE.md",
       "path": "skills/principle-boundary-discipline/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-build-the-lever",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-build-the-lever",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-build-the-lever/GUIDE.md",
       "path": "skills/principle-build-the-lever/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-encode-lessons-in-structure",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-encode-lessons-in-structure",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-encode-lessons-in-structure/GUIDE.md",
       "path": "skills/principle-encode-lessons-in-structure/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-exhaust-the-design-space",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-exhaust-the-design-space",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-exhaust-the-design-space/GUIDE.md",
       "path": "skills/principle-exhaust-the-design-space/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-experience-first",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-experience-first",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-experience-first/GUIDE.md",
       "path": "skills/principle-experience-first/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-explain-the-number",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-explain-the-number",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-explain-the-number/GUIDE.md",
       "path": "skills/principle-explain-the-number/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-fix-root-causes",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-fix-root-causes",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-fix-root-causes/GUIDE.md",
       "path": "skills/principle-fix-root-causes/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-foundational-thinking",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-foundational-thinking",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-foundational-thinking/GUIDE.md",
       "path": "skills/principle-foundational-thinking/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-guard-the-context-window",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-guard-the-context-window",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-guard-the-context-window/GUIDE.md",
       "path": "skills/principle-guard-the-context-window/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-laziness-protocol",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-laziness-protocol",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-laziness-protocol/GUIDE.md",
       "path": "skills/principle-laziness-protocol/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-make-operations-idempotent",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-make-operations-idempotent",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-make-operations-idempotent/GUIDE.md",
       "path": "skills/principle-make-operations-idempotent/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-migrate-callers-then-delete-legacy-apis",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-migrate-callers-then-delete-legacy-apis",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-migrate-callers-then-delete-legacy-apis/GUIDE.md",
       "path": "skills/principle-migrate-callers-then-delete-legacy-apis/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-minimize-reader-load",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-minimize-reader-load",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-minimize-reader-load/GUIDE.md",
       "path": "skills/principle-minimize-reader-load/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-model-the-domain",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-model-the-domain",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-model-the-domain/GUIDE.md",
       "path": "skills/principle-model-the-domain/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-never-block-on-the-human",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-never-block-on-the-human",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-never-block-on-the-human/GUIDE.md",
       "path": "skills/principle-never-block-on-the-human/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-outcome-oriented-execution",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-outcome-oriented-execution",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-outcome-oriented-execution/GUIDE.md",
       "path": "skills/principle-outcome-oriented-execution/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-prove-it-works",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-prove-it-works",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-prove-it-works/GUIDE.md",
       "path": "skills/principle-prove-it-works/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-redesign-from-first-principles",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-redesign-from-first-principles",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-redesign-from-first-principles/GUIDE.md",
       "path": "skills/principle-redesign-from-first-principles/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-separate-before-serializing-shared-state",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-separate-before-serializing-shared-state",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-separate-before-serializing-shared-state/GUIDE.md",
       "path": "skills/principle-separate-before-serializing-shared-state/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-sequence-verifiable-units",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-sequence-verifiable-units",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-sequence-verifiable-units/GUIDE.md",
       "path": "skills/principle-sequence-verifiable-units/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-subtract-before-you-add",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-subtract-before-you-add",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-subtract-before-you-add/GUIDE.md",
       "path": "skills/principle-subtract-before-you-add/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-test-behavior-not-implementation",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-test-behavior-not-implementation",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-test-behavior-not-implementation/GUIDE.md",
       "path": "skills/principle-test-behavior-not-implementation/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "principle-type-system-discipline",
       "kind": "principle",
       "source": "original",
-      "entrypoint": "skill://pstack-principle-type-system-discipline",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/principle-type-system-discipline/GUIDE.md",
       "path": "skills/principle-type-system-discipline/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "recall",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-recall",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/recall/GUIDE.md",
       "path": "skills/recall/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "reflect",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-reflect",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/reflect/GUIDE.md",
       "path": "skills/reflect/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "setup-pstack",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-setup-pstack",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/setup-pstack/GUIDE.md",
       "path": "skills/setup-pstack/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "sharpen",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-sharpen",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/sharpen/GUIDE.md",
       "path": "skills/sharpen/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "show-me-your-work",
@@ -425,7 +477,8 @@
       "source": "original",
       "entrypoint": "skill://pstack-show-me-your-work",
       "path": "skills/show-me-your-work/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "swarm",
@@ -433,55 +486,62 @@
       "source": "original",
       "entrypoint": "skill://pstack-swarm",
       "path": "skills/swarm/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "tdd",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-tdd",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/tdd/GUIDE.md",
       "path": "skills/tdd/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "teach",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-teach",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/teach/GUIDE.md",
       "path": "skills/teach/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "technical-writing",
       "kind": "workflow",
       "source": "original",
-      "entrypoint": "skill://pstack-technical-writing",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/technical-writing/GUIDE.md",
       "path": "skills/technical-writing/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "thermo-nuclear-code-quality-review",
       "kind": "workflow",
       "source": "selected-port",
-      "entrypoint": "skill://pstack-thermo-nuclear-code-quality-review",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/thermo-nuclear-code-quality-review/GUIDE.md",
       "path": "skills/thermo-nuclear-code-quality-review/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "thermo-nuclear-review",
       "kind": "workflow",
       "source": "selected-port",
-      "entrypoint": "skill://pstack-thermo-nuclear-review",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/thermo-nuclear-review/GUIDE.md",
       "path": "skills/thermo-nuclear-review/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "thermos",
       "kind": "workflow",
       "source": "selected-port",
-      "entrypoint": "skill://pstack-thermos",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/thermos/GUIDE.md",
       "path": "skills/thermos/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "typescript-best-practices",
@@ -489,7 +549,8 @@
       "source": "original",
       "entrypoint": "skill://pstack-typescript-best-practices",
       "path": "skills/typescript-best-practices/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "unslop",
@@ -497,15 +558,17 @@
       "source": "original",
       "entrypoint": "skill://pstack-unslop",
       "path": "skills/unslop/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "what-did-i-get-done",
       "kind": "workflow",
       "source": "selected-port",
-      "entrypoint": "skill://pstack-what-did-i-get-done",
+      "entrypoint": "skill://pstack-poteto-mode/references/library/what-did-i-get-done/GUIDE.md",
       "path": "skills/what-did-i-get-done/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "internal-guide"
     },
     {
       "id": "why",
@@ -513,7 +576,8 @@
       "source": "original",
       "entrypoint": "skill://pstack-why",
       "path": "skills/why/SKILL.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "primary"
     },
     {
       "id": "playbook:authoring-a-skill",
@@ -521,7 +585,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/authoring-a-skill.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:autonomous-run",
@@ -529,7 +594,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/autonomous-run.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:autopilot-full",
@@ -537,7 +603,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/autopilot-full.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:autopilot-stack",
@@ -545,7 +612,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/autopilot-stack.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:babysit",
@@ -553,7 +621,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/babysit.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:bug-fix",
@@ -561,7 +630,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/bug-fix.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:eval",
@@ -569,7 +639,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/eval.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:feature",
@@ -577,7 +648,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/feature.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:hillclimb",
@@ -585,7 +657,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/hillclimb.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:investigation",
@@ -593,7 +666,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/investigation.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:multi-phase-plan",
@@ -601,7 +675,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/multi-phase-plan.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:opening-a-pr",
@@ -609,7 +684,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/opening-a-pr.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:orchestrate",
@@ -617,7 +693,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/orchestrate.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:pause-safely",
@@ -625,7 +702,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/pause-safely.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:perf-issue",
@@ -633,7 +711,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/perf-issue.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:prototype",
@@ -641,7 +720,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/prototype.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:refactoring",
@@ -649,7 +729,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/refactoring.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:runtime-forensics",
@@ -657,7 +738,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/runtime-forensics.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:session-pickup",
@@ -665,7 +747,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/session-pickup.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:shipping",
@@ -673,7 +756,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/shipping.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:trace-forensics",
@@ -681,7 +765,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/trace-forensics.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:visual-parity",
@@ -689,7 +774,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/visual-parity.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     },
     {
       "id": "playbook:worktree-cleanup",
@@ -697,7 +783,8 @@
       "source": "original",
       "entrypoint": "/skill:pstack-poteto-mode",
       "path": "skills/poteto-mode/playbooks/worktree-cleanup.md",
-      "implementation": "native-adaptation"
+      "implementation": "native-adaptation",
+      "surface": "playbook"
     }
   ]
 }

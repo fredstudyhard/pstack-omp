@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('omp_install', ROOT / 'tools/omp.py')
@@ -20,6 +21,9 @@ class InstallBoundaryTests(unittest.TestCase):
         self.target = self.base / 'native-skills'
         self.add_source('alpha')
         self.add_source('beta')
+        primary = patch.object(installer, 'PRIMARY_SKILLS', frozenset({'pstack-alpha', 'pstack-beta', 'pstack-poteto-mode'}))
+        primary.start()
+        self.addCleanup(primary.stop)
 
     def add_source(self, name):
         directory = self.repo / 'skills' / name
@@ -52,7 +56,6 @@ class InstallBoundaryTests(unittest.TestCase):
         (self.repo / 'skills/alpha/reference.md').write_text('Updated reference\n')
         installer.install(self.target, self.repo)
         self.assertEqual((self.target / 'pstack-alpha/reference.md').read_text(), 'Updated reference\n')
-        self.assertNotIn('enabled', installer.frontmatter((self.target / 'pstack-alpha/SKILL.md').read_text()))
         self.assertEqual(unrelated.read_text(), 'keep me\n')
 
     def test_local_edit_prevents_update_and_is_not_overwritten(self):
@@ -139,6 +142,31 @@ class InstallBoundaryTests(unittest.TestCase):
                     installer.disable(self.target, self.repo)
                 self.assertEqual(outside.read_bytes(), before)
                 outside.unlink()
+
+    def test_unowned_internal_guide_blocks_entire_install(self):
+        self.add_source('poteto-mode')
+        self.add_source('internal')
+        collision = self.target / 'pstack-poteto-mode/references/library/internal/GUIDE.md'
+        collision.parent.mkdir(parents=True)
+        collision.write_text('personal guide\n')
+        marker = collision.parents[3] / installer.MARKER
+        marker.write_text(json.dumps({'owner': installer.OWNER, 'files': {}}))
+        with self.assertRaises(ValueError):
+            installer.install(self.target, self.repo)
+        self.assertEqual(collision.read_text(), 'personal guide\n')
+        self.assertFalse((self.target / 'pstack-alpha').exists())
+
+    def test_internal_guide_local_edit_blocks_upgrade(self):
+        self.add_source('poteto-mode')
+        self.add_source('internal')
+        installer.install(self.target, self.repo)
+        guide = self.target / 'pstack-poteto-mode/references/library/internal/GUIDE.md'
+        guide.write_text('local correction\n')
+        (self.repo / 'skills/alpha/reference.md').write_text('candidate change\n')
+        with self.assertRaises(ValueError):
+            installer.install(self.target, self.repo)
+        self.assertEqual(guide.read_text(), 'local correction\n')
+        self.assertEqual((self.target / 'pstack-alpha/reference.md').read_text(), 'Original reference\n')
 
 
 if __name__ == '__main__':

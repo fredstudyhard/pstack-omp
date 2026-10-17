@@ -1,12 +1,12 @@
 # Source distribution manifest
 
-Release: `0.9.90-omp.1`. Canonical runtime source: `skills/`. Native lifecycle: `tools/omp.py`.
+Release: `0.9.90-omp.2`. Canonical source: all 64 entries under `skills/`; installed surface: 14 primary skills plus 50 on-demand internal guides. Native lifecycle/compiler: `tools/omp.py`.
 
 Selected source: `michael-denyer/pstack-claude@5bd452955f8ded23ee81e022a19c537d6e523350`; original pstack: `cursor/plugins@99743e9c151c8537cbbf1f98bb38f34ef3368453`. See [provenance](tools/omp-provenance.json), [licenses and attribution](NOTICE.md), [intentional differences](docs/omp-porting.md) and [verification entrypoints](docs/omp-verification.md).
 
-`SHA256SUMS` binds each published source file, including this manifest but excluding the checksum file itself. Git commit identity additionally binds the complete tree. Hashes establish integrity, not authorization or security approval.
+`SHA256SUMS` binds every published source file, including this manifest but excluding itself. Git commit identity binds the complete tree. Hashes establish integrity, not authorization or security approval.
 
-Runtime/development dependencies, host settings, `.omp`, `.audit`, internal work orders, evaluation results and raw model outputs are excluded. Commander production acquisition uses the frozen lockfile; an installation records materialized content separately in ownership markers. No development dependency is copied into native user skills.
+Dependencies, host settings, `.omp`, `.audit`, internal work orders, evaluation results and raw model outputs are excluded. Production Commander acquisition uses the frozen lockfile; materialized files are tracked by installation ownership markers. Development dependencies are not copied into user skills. Generic-skill retirement remains an explicit user-config operation, separate from this source distribution.
 
 ## Files
 
@@ -63,6 +63,8 @@ Runtime/development dependencies, host settings, `.omp`, `.audit`, internal work
 - `skills/create-verification-skill/references/feature-map-example/create-note.md`
 - `skills/create-verification-skill/references/feature-map-example/search.md`
 - `skills/deslop/SKILL.md`
+- `skills/deslop/references/code-slop.md`
+- `skills/deslop/references/complexity-subflows.md`
 - `skills/figure-it-out/SKILL.md`
 - `skills/fix-ci/SKILL.md`
 - `skills/fix-merge-conflicts/SKILL.md`
@@ -72,8 +74,10 @@ Runtime/development dependencies, host settings, `.omp`, `.audit`, internal work
 - `skills/how/references/explorer-prompt.md`
 - `skills/in-your-own-words/SKILL.md`
 - `skills/interrogate/SKILL.md`
+- `skills/interrogate/references/adversarial-review.md`
 - `skills/interrogate/references/code-quality-review.md`
 - `skills/interrogate/references/lead-judgment.md`
+- `skills/interrogate/references/review-contract.md`
 - `skills/interrogate/references/reviewer-prompt.md`
 - `skills/interrogate/references/rubric.md`
 - `skills/ketchup/SKILL.md`
@@ -191,6 +195,8 @@ Runtime/development dependencies, host settings, `.omp`, `.audit`, internal work
 - `skills/show-me-your-work/references/decision-log-template.tsv`
 - `skills/show-me-your-work/scripts/log.sh`
 - `skills/swarm/SKILL.md`
+- `skills/swarm/references/execution-recipes.md`
+- `skills/swarm/references/plan-challenge.md`
 - `skills/tdd/SKILL.md`
 - `skills/teach/SKILL.md`
 - `skills/technical-writing/SKILL.md`
@@ -200,6 +206,8 @@ Runtime/development dependencies, host settings, `.omp`, `.audit`, internal work
 - `skills/typescript-best-practices/SKILL.md`
 - `skills/typescript-best-practices/references/patterns.md`
 - `skills/unslop/SKILL.md`
+- `skills/unslop/references/pattern-lens.md`
+- `skills/unslop/references/preservation-contexts.md`
 - `skills/what-did-i-get-done/SKILL.md`
 - `skills/why/SKILL.md`
 - `skills/why/references/epistemics.md`

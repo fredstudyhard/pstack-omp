@@ -6,6 +6,10 @@ The fork starts at Michael Denyer's `pstack-claude@5bd452955f8ded23ee81e022a19c5
 
 The original pin's API inventory has 54 skills, including 24 principles. This fork includes all 54, restores `make-bot-ui` as a native RPC authoring workflow, and retains ten selected-port additions. Every skill and all 23 playbooks are listed in `omp-capabilities.json`. A workflow is a procedure executed by the coding agent; it is not a new host tool or permission boundary.
 
+The native discovery surface exposes 14 primary skills. Fifty entries, including all principles, become on-demand internal guides rather than global registry skills. Source directories stay intact for upstream comparison; the ownership-aware installer compiles them into the primary entrypoint's library and retires former global names without deleting protected files.
+
+Pstack owns the engineering contract: interrogate absorbs the governed normal-review contract, unslop absorbs preservation-first prose editing, deslop absorbs the simplification ladder and scoped cleanup, and swarm absorbs parent-owned native team orchestration. Shared original skills can remain canonical for other runtimes but are not competing active OMP workflows when the operator retires those names. Security, domain operations and authorization governance retain their own contracts.
+
 ## Base rationale
 
 The selected base preserves broad workflow coverage, isolated writers, operator-controlled merge and revision-bound review. The fork retains those user functions while replacing foreign host mechanisms with native OMP primitives. The alternative OMP port is provenance-only reference, not copied implementation.

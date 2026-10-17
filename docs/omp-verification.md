@@ -13,7 +13,7 @@ bun run test
 python3 examples/issue-desk/verification/scripts/verify.py
 ```
 
-The source checker validates skill names, runtime-contract references and local skill links. Behavioral suites cover installer ownership/path boundaries, portable helper behavior and the maintained synthetic application. The example verifier drives the real CLI, checks filtering-before-pagination, persisted add/done transitions, refusal/error invariants and preservation of application/test/seed files. It does not pin incidental diagnostic wording.
+The source checker validates all 64 canonical entries, the 14-primary/50-internal split, runtime-contract references and both source and materialized Markdown links. Behavioral suites cover installer ownership/path boundaries, internal-guide collision/local-edit refusal, portable helpers and the maintained synthetic application. The example verifier drives the real CLI, checks filtering-before-pagination, persisted add/done transitions, refusal/error invariants and protected file preservation; it does not pin incidental diagnostic wording.
 
 Optional helper dependency acquisition is explicit, lockfile-pinned and lifecycle-disabled; see [maintenance](omp-maintenance.md). Helper typechecking additionally needs the declared development toolchain; it is not copied to the runtime installation.
 
@@ -25,7 +25,7 @@ After an authorized installation:
 python3 tools/discovery.py --cwd <supported-working-directory>
 ```
 
-This resolves each `pstack-*` skill in a fresh native reader and checks its installed source. Repeat in every supported working directory; one cwd does not establish precedence or discovery elsewhere. A file read alone does not establish registry availability. Restart existing sessions to pick up registry changes.
+This resolves all 14 primary skills and 50 internal-guide URIs in fresh native readers with exact installed-source identity, then proves all 50 internal names unavailable as global skills. Repeat in every supported working directory; one cwd does not establish precedence or discovery elsewhere. A concrete file read alone does not prove registry availability. Restart existing sessions to pick up registry changes.
 
 For disable/re-enable acceptance, disable owned skills, prove their names unavailable in a fresh reader, check unrelated user/project skills still resolve, then restore reviewed source and repeat affected discovery. Never delete or move protected `.omp` paths as cleanup.
 

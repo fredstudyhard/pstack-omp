@@ -1,42 +1,47 @@
 ---
 name: pstack-swarm
-description: "Fan out N parallel workers, drain them, and return one report. Use for /skill:pstack-swarm, 'swarm this', or parallel coverage, races, gauntlets, and exploration."
+description: Coordinate explicit bounded team work with parent-owned decomposition, isolated workers, integration, and project-defined acceptance. Supports coverage, races, gauntlets, and exploration without default fan-out for routine work.
 ---
 
 # Swarm
 
 First read the [OMP runtime contract](../poteto-mode/references/omp-runtime.md).
 
-## Start
+## Activation and project ownership
 
-Open a todolist with one entry per phase before launching anything.
+Use for an explicit team-workflow, swarm, or parallel-work request, not ordinary single-agent work. Host delegation policy, configured roles, model/effort routing, and authorization remain authoritative. This contract grants no additional tools or provider access.
 
-1. Frame
-2. Fan out
-3. Aggregate
-4. Report
+Read applicable repository routing and classify the work as source-only or requiring execution, verification, or resource lifecycle operations. For the latter, locate the project execution contract: a task packet, adapter, runner, or explicit combination. Missing required mechanics mean blocked, not reconstructed commands from memory. Source-only work needs no mechanical runner unless repository policy requires one.
 
-## Phase A: Frame
+Repository instructions own domain/routing constraints. Project contracts own scope, dependencies, acceptance, stop conditions, commands, fixtures, evidence destinations, deadlines, retention, and lifecycle. Adapters/runners implement those mechanics. If instructions and runner disagree on a required gate, stop for contract repair rather than choosing the easier result. Do not create a second task-state system or impose a universal worktree, packet, artifact, or report schema.
 
-1. State the done predicate and the artifact or report the swarm must return.
-2. Choose the shape. Partition into slices, race N workers on identical briefs, or mix both. For a race or mixed shape, declare `first pass`, `rank all`, or `best-of` before spawning.
-3. Select configured native roles for each slice (`scout` for discovery, `reviewer` for read-only audit, implementation roles for code). Host configuration owns model and effort. For a model race, require actual identity evidence and fail the requested family gate closed when unavailable. Budget and host delegation rules bound the fan-out; process remaining slices sequentially when needed.
-4. Give each writer an isolated worktree or output directory and name the integration owner. Verification/measurement briefs pin exact SHAs, method, sample count, sample definition and order. Only explicitly authorized measurement workers run checks before integration.
+## Parent and worker authority
 
-## Phase B: Fan out
+The parent alone interprets the objective, defines the task graph and independent seams, assigns paths/inputs/outputs, approves the plan, integrates results, resolves conflicts, runs or commissions project-defined verification, and decides final complete/incomplete/blocked status.
 
-Launch eligible workers in one native `task` batch with `tasks: [{task, solutionSpace, name?, agent?}]` and shared `context`. Use only configured role names; omit `agent` for the default worker. Put owned paths, scope and acceptance in each `task`; `solutionSpace` briefly describes implementation freedom. Native tasks already run in the background; isolation comes from the assigned worktree/output directory.
+Workers stay within explicit ownership and return inspectable changes or findings, evidence, blockers, and unverified scope. They may not expand scope, declare whole-task acceptance, deploy, mutate remote providers, or enable automatic merge. Worker-reported evidence is not parent acceptance until checked against the project contract and user-relevant path.
 
-When a worker must start from a non-default branch, check that branch out in the worker's own worktree and name the worktree path in its brief.
+Parallelize only genuinely independent bounded slices. Serialize shared files/interfaces, migrations, deployment, shared configuration, and integration boundaries without an explicit contract. Isolate writers with explicit disjoint ownership and, when needed, separate worktrees or output directories. Never allow overlapping writes to shared state. Unknown shared state, secrets, irreversible effects, and unclear ownership require the project's serial or approval path.
 
-Every brief stands alone. Include the goal, scope, exact slice or race arm, how to verify, and what to report. Reports use `PASS`, `ISSUES`, or `BLOCKED` with evidence. A worker that can prove a defect reports `ISSUES` and lists every issue it can prove, not only the first.
+## Lifecycle
 
-If a worker drops out, proceed with N-1 and note it.
+1. **Plan:** establish objective, done predicate, graph/dependencies, independent slices, ownership, handoff shape, and slice acceptance. Keep existing project task tracking. Routine clear work needs no reviewer. For material ambiguity/risk or explicit adversarial plan review, load [bounded plan challenge](references/plan-challenge.md).
+2. **Contract:** confirm routing and any required execution/lifecycle contract. Choose a coverage/race recipe only when needed from [execution recipes](references/execution-recipes.md).
+3. **Execute:** use eligible configured native workers within host limits. Give each a standalone brief: goal, inputs, owned paths, dependencies, allowed side effects, implementation freedom, acceptance, verification authority, deadline/stop conditions, and expected handoff. No hidden background activity.
+4. **Handoff:** collect inspectable changes/findings, verification tier and evidence, blockers, unverified scope, and residual resources. Missing or dropped required work remains a gap.
+5. **Integrate:** parent resolves conflicts and checks cross-slice boundaries. Material scope, dependency, acceptance, or side-effect changes pause affected work for a parent decision.
+6. **Verify:** parent follows the project's user path, tests, smoke, or other acceptance surface after integration. Only explicitly assigned measurement/verification workers run checks before integration. Do not replace acceptance with worker self-report or model agreement.
+7. **Close:** perform project-defined lifecycle cleanup and report residual/unverified state. Preserve explicit deadlines and stop conditions; no unbounded polling, retries, cron, idle sockets, background jobs, or automatic reruns.
 
-## Phase C: Aggregate
+## Acceptance and reporting
 
-Read the terminal results. Drop a result that does not record the SHAs and method its brief names, and respawn that worker once. After a second miss, record a gap. A gap does not count as a pass. For coverage, every required slice needs a result. For a race, apply the selection rule declared up front. Use first pass, rank all, or best-of. Do not paste raw worker dumps.
+Local work is the default boundary. Remote API/provider mutations, remote migrations, deployment, push, and automatic merge require separate explicit authorization/workflows. A local draft is not a published work order.
 
-## Phase D: Report
+Return one consolidated report rather than worker dumps. Separate observed outcomes from inference, identify the exercised project verification path and project-selected artifacts, and classify evidence as `parent-verified`, `worker-reported`, `blocked`, or `unverified` where relevant. Preserve limitations and residual state.
 
-Return one consolidated in-chat report with the table, issue one-liners, gaps or dropouts, and the race rule when used.
+- **Complete:** parent integration plus required verification and lifecycle checks passed.
+- **Partial:** bounded work finished but a required verification/lifecycle boundary remains unverified.
+- **Failed:** an executed required slice, integration boundary, or gate failed.
+- **Blocked:** required contract, prerequisite, authority, or dependency is unavailable.
+
+A failed gate or missing evidence cannot become success by reinterpretation. One successful project run proves neither cross-project portability, production readiness, nor automatic-routing correctness.

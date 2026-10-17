@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import shutil
@@ -11,6 +12,11 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 OWNER = "fredstudyhard/pstack-omp"
 MARKER = ".pstack-omp.json"
+PRIMARY_SKILLS = frozenset("pstack-" + name for name in (
+    "poteto-mode", "poteto-help", "how", "why", "architect", "arena",
+    "interrogate", "swarm", "unslop", "deslop", "create-verification-skill",
+    "maintain-verification-skill", "show-me-your-work", "typescript-best-practices",
+))
 
 
 def skill_sources(root=ROOT):
@@ -102,13 +108,58 @@ def owned(destination):
         return False
 
 
+def installed_path(path, root):
+    short, *parts = path.relative_to(root / "skills").parts
+    name = "pstack-" + short
+    if name in PRIMARY_SKILLS:
+        return Path(name, *parts)
+    if parts == ["SKILL.md"]:
+        parts = ["GUIDE.md"]
+    return Path("pstack-poteto-mode", "references", "library", short, *parts)
+
+
 def installed_content(path, source, entries):
     payload = path.read_bytes()
     if "node_modules" in path.relative_to(source).parts or path.suffix not in {".md", ".mjs", ".js", ".ts", ".sh", ".py", ".json"}:
         return payload
+    root = source.parent.parent
     text = payload.decode("utf-8")
-    for name, sibling in entries:
-        text = re.sub(r"((?:\.\./)+)" + re.escape(sibling.name) + r"(?=/)", lambda match: match[1] + name, text)
+    names = {name for name, _ in entries}
+    internal = names - PRIMARY_SKILLS
+
+    def relative_reference(match):
+        original = Path(os.path.abspath(path.parent / match[0]))
+        try:
+            original.relative_to(root / "skills")
+        except ValueError:
+            return match[0]
+        if not original.exists():
+            return match[0]
+        relative = os.path.relpath(installed_path(original, root), installed_path(path, root).parent)
+        return relative if relative.startswith(".") else "./" + relative
+
+    text = re.sub(r"(?<![\w:/])(?:\.\.?/)+(?:[\w.-]+/)*[\w.-]+", relative_reference, text)
+
+    def internal_uri(match):
+        name, suffix = match[1], match[2]
+        if name not in internal:
+            return match[0]
+        relative = suffix.lstrip("/") if suffix else "GUIDE.md"
+        if relative == "SKILL.md":
+            relative = "GUIDE.md"
+        return "skill://pstack-poteto-mode/references/library/" + name.removeprefix("pstack-") + "/" + relative
+
+    text = re.sub(r"skill://(pstack-[a-z0-9-]+)(/[\w./-]+)?", internal_uri, text)
+    text = re.sub(r"/skill:(pstack-[a-z0-9-]+)", lambda match:
+                  "/skill:pstack-poteto-mode " + match[1].removeprefix("pstack-")
+                  if match[1] in internal else match[0], text)
+    if path == source / "SKILL.md":
+        enabled = source.name and "pstack-" + source.name in PRIMARY_SKILLS
+        value = "true" if enabled else "false"
+        if re.search(r"(?m)^enabled:", text):
+            text = re.sub(r"(?m)^enabled:.*$", "enabled: " + value, text, count=1)
+        else:
+            text = text.replace("---\n", "---\nenabled: " + value + "\n", 1)
     return text.encode("utf-8")
 
 
@@ -116,43 +167,70 @@ def install(target, root=ROOT, dry_run=False):
     target = Path(target).expanduser().absolute()
     safe_destination(target)
     entries = inventory(root)
+    plans = {}
     for name, source in entries:
-        source_files_list = list(source_files(source))
-        if not source_files_list:
-            raise ValueError(f"empty source: {source}")
+        for path in source_files(source):
+            relative = installed_path(path, root)
+            owner = relative.parts[0]
+            member = Path(*relative.parts[1:]).as_posix()
+            if member in plans.setdefault(owner, {}):
+                raise ValueError(f"duplicate materialized path: {relative}")
+            plans[owner][member] = (path, source)
+    if any(name not in {entry for entry, _ in entries} for name in plans):
+        raise ValueError("internal guides require the pstack-poteto-mode source")
+    existing = {}
+    for name in {entry for entry, _ in entries} | plans.keys():
         destination = target / name
         if destination.exists() or destination.is_symlink():
             if not owned(destination):
                 raise ValueError(f"collision, preserving unowned path: {destination}")
             old = json.loads((destination / MARKER).read_text())
             expected = old["files"]
-            for path in source_files_list:
-                output = destination / path.relative_to(source)
+            if name not in plans:
+                entrypoint = destination / "SKILL.md"
+                safe_destination(entrypoint, regular_file=True)
+                if not entrypoint.is_file() or hashlib.sha256(entrypoint.read_bytes()).hexdigest() != expected.get("SKILL.md"):
+                    raise ValueError(f"untracked or edited retired entrypoint, preserving: {entrypoint}")
+            for relative in plans.get(name, {}):
+                output = destination / relative
                 safe_destination(output, regular_file=True)
-                if output.exists() and path.relative_to(source).as_posix() not in expected:
+                if output.exists() and relative not in expected:
                     raise ValueError(f"unowned installed file, preserving: {output}")
             for relative, checksum in expected.items():
                 item = destination / relative
                 safe_destination(item, regular_file=True)
                 if item.exists() and hashlib.sha256(item.read_bytes()).hexdigest() != checksum:
                     raise ValueError(f"local installed edit, preserving: {item}")
+            existing[name] = old
     if dry_run:
-        return {"status": "DRY_RUN", "root": str(target), "skills": [name for name, _ in entries]}
+        return {"status": "DRY_RUN", "root": str(target), "skills": sorted(plans),
+                "internal_guides": len(entries) - len(plans)}
     target.mkdir(parents=True, exist_ok=True)
-    for name, source in entries:
+    for name, files in plans.items():
         destination = target / name
         destination.mkdir(exist_ok=True)
         checksums = {}
-        for path in source_files(source):
-            relative = path.relative_to(source)
+        for relative, (path, source) in files.items():
             output = destination / relative
             output.parent.mkdir(parents=True, exist_ok=True)
             payload = installed_content(path, source, entries)
             output.write_bytes(payload)
             shutil.copymode(path, output)
-            checksums[relative.as_posix()] = hashlib.sha256(payload).hexdigest()
-        (destination / MARKER).write_text(json.dumps({"owner": OWNER, "source_digest": digest(source), "files": checksums}, indent=2) + "\n")
-    return {"status": "INSTALLED", "root": str(target), "count": len(entries)}
+            checksums[relative] = hashlib.sha256(payload).hexdigest()
+        (destination / MARKER).write_text(json.dumps({"owner": OWNER, "files": checksums}, indent=2) + "\n")
+    retired = []
+    for name, old in existing.items():
+        if name in plans:
+            continue
+        entrypoint = target / name / "SKILL.md"
+        entrypoint.write_text(disabled_text(entrypoint.read_text()))
+        old["files"]["SKILL.md"] = hashlib.sha256(entrypoint.read_bytes()).hexdigest()
+        old["disabled"] = True
+        old["retired_to"] = "pstack-poteto-mode/references/library/" + name.removeprefix("pstack-") + "/GUIDE.md"
+        (target / name / MARKER).write_text(json.dumps(old, indent=2) + "\n")
+        retired.append(name)
+    return {"status": "INSTALLED", "root": str(target), "count": len(plans),
+            "internal_guides": len(entries) - len(plans), "retired": retired, "deleted": 0}
 
 
 def disabled_text(text):
@@ -194,6 +272,8 @@ def disable(target, root=ROOT):
 def check(root=ROOT):
     entries = inventory(root)
     issues = []
+    materialized = {installed_path(path, root) for _, source in entries for path in source_files(source)}
+    materialized |= {parent for path in list(materialized) for parent in path.parents}
     for name, source in entries:
         entry = (source / "SKILL.md").read_text()
         if "omp-runtime.md" not in entry:
@@ -207,9 +287,17 @@ def check(root=ROOT):
                 target = target.split("#", 1)[0]
                 if target and not (path.parent / target).exists():
                     issues.append(f"{path.relative_to(root)}: broken link: {target}")
+            rendered = installed_content(path, source, entries).decode("utf-8")
+            for target in re.findall(r"\[[^\]]*\]\(([^\s)]+)(?:\s+[^)]*)?\)", rendered):
+                if "://" in target or target.startswith(("#", "mailto:")):
+                    continue
+                target = target.split("#", 1)[0]
+                resolved = Path(os.path.normpath(str(installed_path(path, root).parent / target)))
+                if target and resolved not in materialized:
+                    issues.append(f"{path.relative_to(root)}: broken materialized link: {target}")
     if issues:
         raise ValueError("\n".join(issues))
-    return {"status": "PASS", "skills": len(entries), "principles": sum(name.startswith("pstack-principle-") for name, _ in entries), "playbooks": len(list((root / "skills/poteto-mode/playbooks").glob("*.md")))}
+    return {"status": "PASS", "skills": len(entries), "entrypoints": sum(name in PRIMARY_SKILLS for name, _ in entries), "internal_guides": sum(name not in PRIMARY_SKILLS for name, _ in entries), "principles": sum(name.startswith("pstack-principle-") for name, _ in entries), "playbooks": len(list((root / "skills/poteto-mode/playbooks").glob("*.md")))}
 
 
 def doctor(root=ROOT):

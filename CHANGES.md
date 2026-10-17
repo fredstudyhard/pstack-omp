@@ -2,6 +2,14 @@
 
 Native maintenance follows [CONTRIBUTING.md](CONTRIBUTING.md) and [the OMP maintenance guide](docs/omp-maintenance.md). Entries below `0.9.90-omp.1` are preserved historical upstream release notes; previous runtime mechanisms are not active OMP instructions.
 
+## 0.9.90-omp.2 - Pstack-first consolidated surface
+
+- Expose 14 primary skills, preserving the other 50 upstream workflows/principles as on-demand internal guides. Keep all 64 canonical sources and 23 playbooks.
+- Compile links, helper imports and internal invocation examples to the installed library topology. Disable former owned global roots without deletion or movement; preserve local-edit and collision refusals.
+- Consolidate bounded normal/deep review into interrogate, preservation-first prose editing into unslop, scoped cleanup/simplification into deslop, and parent-owned native team work into swarm.
+- Keep specialized security/domain/governance workflows independent. Generic entrypoint retirement is an explicit user-config operation, not an implicit installer side effect.
+- Replace blanket prose rewriting, punctuation bans and automatic multi-model review with scoped activation and on-demand references.
+
 ## 0.9.90-omp.1 - Complete OMP-native fork
 
 - Preserve all 54 original skills, ten selected-port workflows, 24 principles and 23 playbooks, with pinned provenance and original MIT notices.

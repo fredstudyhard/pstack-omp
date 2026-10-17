@@ -2,9 +2,13 @@
 
 ## Ownership
 
-`skills/` is the only active distribution source. `tools/omp.py` installs its reviewed contents into native OMP user skills. Names are prefixed to avoid existing bare-name collisions. Other-runtime plugin manifests, model catalogs, hooks and subagent launchers are not part of this fork's runtime.
+`skills/` is the canonical source for all 64 original/port entries. `tools/omp.py` materializes 14 primary native skills and compiles the remaining 50 entries to `pstack-poteto-mode/references/library/<short-name>/GUIDE.md` with support files. Canonical source is not duplicated: installed files are derived artifacts. Other-runtime manifests, model catalogs, hooks and subagent launchers are not part of the runtime.
 
 Installed files are materialized copies with an ownership/content manifest, not a second canonical source. Edit the repository, not installed copies. Installer preflight refuses unowned collisions, symlink targets, path traversal and local installed edits before writing. If the source changed, inspect it and re-run checks/security review before installing it; the ownership marker is not a trust verdict.
+
+The installer rewrites relative links/imports and internal registry invocations into the actual installed topology. Only primary names are global commands. Old owned global roots are disabled and marked with their internal-guide destination, never deleted or moved; a fresh install does not create those obsolete roots. Do not re-enable them merely to satisfy an old invocation.
+
+OMP-specific retirement of `code-review`, `humanizer`, `ponytail` and `omp-native-local-team-workflow` belongs in the user's canonical configuration, not copied shared skill sources or this installer. Preserve shared sources for other runtimes. Scope ignored-name changes narrowly, preserve all prior entries, and retain security/domain/governance workflows.
 
 ## Local verification
 
@@ -43,6 +47,8 @@ python3 tools/omp.py disable
 ```
 
 This edits owned entrypoints to `enabled: false`, keeps files/evidence and deletes/moves nothing. Prove that a fresh OMP process no longer resolves the fork's names; existing sessions may retain the old loaded registry until restarted.
+
+If a user-managed configuration conditionally retires generic entrypoints when the installed primary surface is enabled, re-render and scoped-apply that config after disable. Verify generic entries return and unrelated skills remain available. After reinstall, re-render/apply again and prove only the replaced generic entries are retired. This installer never edits user configuration itself.
 
 To re-enable the reviewed version:
 

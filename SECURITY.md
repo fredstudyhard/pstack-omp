@@ -10,4 +10,4 @@ Foreign plugin hooks, CI workflows, model registries and subprocess-agent shims 
 
 ## Supported source
 
-The maintained native branch is `omp-native`, currently `0.9.90-omp.1`. There is no plugin auto-update or maintained backport release line. Review fixes as candidates, verify their source identity and applicable behavior, then explicitly install. See [security design](docs/omp-security.md) and [maintenance/rollback](docs/omp-maintenance.md).
+The maintained native branch is `omp-native`, currently `0.9.90-omp.2`. There is no plugin auto-update or maintained backport release line. Review fixes as candidates, verify their source identity and applicable behavior, then explicitly install. See [security design](docs/omp-security.md) and [maintenance/rollback](docs/omp-maintenance.md).

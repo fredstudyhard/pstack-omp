@@ -8,7 +8,7 @@ Project credentials, data export, external messages, PR/release writes and share
 
 ## Installer boundary
 
-`tools/omp.py` materializes namespaced native skills with ownership/content markers. Preflight rejects unowned collisions, local installed edits, symlink ancestors/destinations, multiply linked destination/marker files and escaping marker paths before writes. A marker or checksum proves integrity/ownership compatibility, not publisher trust or authorization. Installed sibling-skill references are deterministically rewritten into the `pstack-*` namespace; third-party dependency contents are not rewritten.
+`tools/omp.py` materializes 14 primary skills with ownership/content markers and 50 internal guides beneath the main entrypoint. Preflight rejects unowned collisions, local edits, symlink ancestors/destinations, multiply linked destination/marker files and escaping marker paths before writes. Legacy root retirement also validates its entrypoint independently before mutation. A marker or checksum proves integrity/ownership compatibility, not publisher trust or authorization. Relative links/imports and internal invocations are compiled into the actual topology; third-party dependency contents are not rewritten.
 
 Disable changes owned entrypoints to `enabled: false` and preserves files. It does not delete or move `.omp` content. Reinstall only reviewed source; do not overwrite local installed edits or use blanket cleanup.
 

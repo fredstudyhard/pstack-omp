@@ -22,7 +22,7 @@ python3 tools/omp.py install
 
 安裝器只會連同固定的 `commander@14.0.0` 複製必要 dependency，不執行安裝／lifecycle scripts；缺依賴時 helpers 會停止並給出 setup 指令，不自行上網。
 
-安裝只會寫入自己擁有的 `~/.omp/agent/skills/pstack-*`。既有同名且非本工具擁有的路徑會阻擋整次安裝；不修改模型、provider、chezmoi 或其他 runtime 設定。重新啟動 OMP，或開新 session，再使用：
+安裝只寫入自己擁有的 `~/.omp/agent/skills/pstack-*`。全域只註冊 14 個主入口，另外 50 份流程／原則作為主入口下的按需 guides；完整能力仍保留。由舊版升級時只停用舊的全域入口，不刪移檔案。既有非本工具擁有的同名路徑或本機修改會阻擋更新；不修改模型、provider、chezmoi 或其他 runtime 設定。重新啟動 OMP，或開新 session，再使用：
 
 ```text
 /skill:pstack-poteto-mode 修復這個問題，先實際重現，再找根因、修正與驗證。
@@ -32,6 +32,10 @@ python3 tools/omp.py install
 ```
 
 不需要開啟全域 always-on 模式。明確進入 pstack 的任務會使用它的 playbook；一般聊天與原有技能不被取代。
+
+工程工作流以 pstack 命名為主：review 用 `pstack-interrogate`（預設一般審查，深度／多模型另選模式）、文章去制式化用 `pstack-unslop`、程式清理／簡化用 `pstack-deslop`、團隊派工用 `pstack-swarm`。專業操作、安全審查及授權治理仍獨立，不全部改姓 pstack。
+
+低頻流程透過主入口指定，例如 `/skill:pstack-poteto-mode bro`。內部原則可讀 `skill://pstack-poteto-mode/references/library/principle-prove-it-works/GUIDE.md`，不再使用舊的獨立 skill 名稱。
 
 ### 一個可親自操作的修復任務
 
@@ -66,6 +70,8 @@ python3 tools/omp.py disable
 ```
 
 `disable` 僅把本工具擁有的 entrypoints 標為停用，**不刪除或移動 `.omp` 內容**。新 session 不再發現它們。重新執行 `install` 可啟用已審查的來源；若本機安裝檔有額外修改，會停止而不覆蓋。
+
+若你的既有 OMP user configuration 已選擇停用被取代的通用入口，整包停用後也要從其 canonical config source 恢復它們；這不是安裝器可擅自修改的設定。chezmoi 管理者應重新 render／scoped apply 該 target。不要停用或刪除安全、領域操作與治理 guard。
 
 ## 維護
 

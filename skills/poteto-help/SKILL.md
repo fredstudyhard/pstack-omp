@@ -11,7 +11,7 @@ Answer the user's question about pstack, hand them a prompt they can send, and l
 
 A message that asks for work, such as "use pstack to fix this bug", is not a help question. Read [`poteto-mode`](../poteto-mode/SKILL.md) and do the work under it.
 
-This map routes questions to installed native skills and playbooks. Read the matching source before answering. Link the actual local source; use a public fork link only after confirming the referenced revision exists remotely. Upstream guides describe another runtime and are provenance, not native instructions.
+This map covers 14 global primary skills and 50 internal guides. The installer compiles source-relative links and invocation examples into the deployed topology. An internal workflow is requested through `/skill:pstack-poteto-mode <workflow>` and read under its `references/library/<short-name>/GUIDE.md`, never by its retired registry name. Read the matching source before answering. Link the actual local source; public fork links require a verified remote revision. Upstream guides are provenance, not native instructions.
 
 ## Find out what they need
 
@@ -46,7 +46,7 @@ Invoke `/skill:pstack-poteto-mode` for each new task unless current host evidenc
 
 ## Pick a skill
 
-The default answer is `/skill:pstack-poteto-mode`, which runs most of the others when its steps need them. Name a skill directly when the user wants more or less of something than the playbook gives. Read the skill before you recommend it, and give one example prompt.
+The default answer is `/skill:pstack-poteto-mode`, which routes to the applicable playbook and on-demand guide. Direct commands are reserved for the 14 primary entrypoints; the installed table below compiles all other entries into main-entrypoint intents. Read the guide before recommending it, and give one example prompt.
 
 | The user wants to | Skill |
 |---|---|
@@ -62,7 +62,7 @@ The default answer is `/skill:pstack-poteto-mode`, which runs most of the others
 | Settle types and module shape before code that crosses a function boundary | [`/skill:pstack-architect`](../architect/SKILL.md) |
 | Get several attempts at one brief, merged into the best one | [`/skill:pstack-arena`](../arena/SKILL.md) |
 | Run parallel checks over slices, or race workers | [`/skill:pstack-swarm`](../swarm/SKILL.md) |
-| Have different models review a diff and try to break it | [`/skill:pstack-interrogate`](../interrogate/SKILL.md) |
+| Review a bounded diff, or explicitly request deep/adversarial review | [`/skill:pstack-interrogate`](../interrogate/SKILL.md) |
 | Fix a bug test-first when a cheap local test exists | [`/skill:pstack-tdd`](../tdd/SKILL.md) |
 | Apply TypeScript rules to `.ts` or `.tsx` work | [`/skill:pstack-typescript-best-practices`](../typescript-best-practices/SKILL.md) |
 | Strip comments before review, using a reviewer that didn't write them | [`/skill:pstack-no-comments`](../no-comments/SKILL.md) |
@@ -80,7 +80,7 @@ The default answer is `/skill:pstack-poteto-mode`, which runs most of the others
 | Stop agents from repeating the same mistakes in this repo | [`/skill:pstack-correct`](../correct/SKILL.md) |
 | Find their way around pstack | `/skill:pstack-poteto-help` |
 
-If a skill directory next to this one is missing from the table, read its frontmatter and route by its description. The `principle-*` directories are covered under principles below.
+The source checkout retains sibling directories for maintenance; the installed internal documents live beneath poteto-mode's library. Route by the appropriate source description and concrete compiled guide, not a guessed global command. The `principle-*` sources are covered below.
 
 Close calls:
 

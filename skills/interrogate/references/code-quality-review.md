@@ -2,6 +2,8 @@
 
 Each reviewer applies this code-quality lens in addition to the rubric. It is a strict standard focused on implementation quality, maintainability, abstraction quality, and codebase health.
 
+This is an on-demand deep/adversarial lens, not the ordinary review default. The shared [finding/evidence contract](review-contract.md) and authorized read-only scope take precedence throughout. "Improve", "rethink" and "go for it" below mean propose evidence-backed alternatives, never edit the code. Treat structural and file-size rules as investigation prompts: only demonstrated, change-introduced defects or concrete maintainability costs justify actionable findings or blockers; preferences belong in Noted/Dismissed triage. Parallelization suggestions cannot override host delegation, ownership or safety gates.
+
 Above all, be ambitious about code structure. Do not merely identify local cleanup. Actively search for "code judo" moves, restructurings that preserve behavior while making the implementation dramatically simpler, smaller, more direct, and more elegant.
 
 ## Core Prompt

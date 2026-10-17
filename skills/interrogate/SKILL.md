@@ -1,68 +1,33 @@
 ---
 name: pstack-interrogate
-description: "Use for \"interrogate\", \"adversarial review\", \"multi-model review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". Multiple LLM reviewers challenge changes from independent angles."
+description: "Use for bounded code review, PR/final review, correctness, performance, migration or public-contract review; also explicit deep, adversarial or multi-model review, interrogate, challenge this, stress test this code, find blind spots or tear this apart. Ordinary review stays bounded; independent model fanout is opt-in."
 ---
 
 # Interrogate
 
-First read the [OMP runtime contract](../poteto-mode/references/omp-runtime.md); it governs tools, roles, authority, budgets and verification throughout this skill.
+First read the [OMP runtime contract](../poteto-mode/references/omp-runtime.md); actual host policy, tool schemas, delegation gates and configured model roles remain authoritative. This is the canonical engineering code-review entrypoint, not permission to edit or launch providers.
 
-Spawn one reviewer per configured model to adversarially review code changes. The adversarial signal comes from model diversity, not assigned personas. The deliverable is a synthesized verdict. Do NOT auto-apply changes.
+## Choose the review mode
 
-## Step 1, Scope
+- **Normal (default):** one bounded review using the native `reviewer` role when host delegation gates permit. Otherwise inspect directly and identify the lack of independent review. Do not launch one reviewer per model, multiple workers or a council for an ordinary review.
+- **Explicit deep/adversarial:** read [the adversarial playbook](references/adversarial-review.md) only when the user requests deep review, adversarial challenge or multi-model coverage. A deep review can use one reviewer; adversarial intent alone does not authorize multi-model fanout. Use independent families only when requested or required by an applicable host gate, and only within actual delegation and budget authorization.
+- **Security scope:** keep `security-review` independent. Invoke it and the native `security-reviewer` role when appropriate for auth, permissions, secrets, untrusted input, dependencies, deployment exposure, MCP or agent/tool boundaries; do not add a security lane to unrelated changes.
+- Use native `scout` only for a permitted bounded, independent read-only evidence check. The coordinator owns final proof. A bounded `advisor` opinion may inform a high-impact disagreement, but neither it nor continuous advisor output replaces file inspection or a required fresh independent verdict.
 
-Identify what to review from context:
+Never change provider enablement, presets or agent schemas to obtain a review. Missing a specifically required reviewer/family is a blocked gate, not permission to substitute another lane.
 
-- If the user points at specific files or a diff, use that.
-- If on a feature branch, run `git diff main...HEAD` (or the appropriate base branch) for the full changeset.
-- If the user's message references recent work, gather the relevant files.
+## Shared review procedure
 
-Package the diff or file contents with any surrounding context files the reviewers need to understand the code.
+Apply this procedure in every mode; delegated reviewers receive the same requirements and [finding/evidence contract](references/review-contract.md).
 
-## Step 2, Intent
+1. Identify review shape, exact scope, requirements, non-goals and known verification. State the intended behavior before judging implementation. Resolve intent from available evidence; ask only when material uncertainty remains.
+2. Pin the target revision/base. Read the real diff and changed files, not just a summary. Use user-specified files or diff; for a branch review establish the appropriate base before collecting its full changeset. For recent work, identify the actual affected files.
+3. Check requirement compliance before style or polish. Inspect adjacent interfaces receiving or routing changed values. For every new type, command, event, message or enum crossing a module boundary, inspect the consuming dispatch point: silent fallthrough, discard or an unhandled branch can be an integration defect.
+4. Trace changed values through boundaries, persistence, error paths and external side effects. Broaden the read scope only for a named concrete risk, not a default repository crawl.
+5. Report actionable, unintentional issues introduced by the change, with patch-anchored evidence, a plausible trigger and concrete impact. Apply the shared evidence bar; do not manufacture findings to fill a review.
+6. Remain read-only: no edits, destructive commands, provider/network identity calls or other side effects by default. Run only explicitly authorized, named targeted checks necessary to interpret a claim; do not trigger builds or edits merely to strengthen a theory. Report existing verification separately from checks actually run.
+7. Stop and mark the review **incomplete** if the diff, target files or required deployment facts are unavailable. Name missing proof; never fabricate a verdict from a label, task name or external reviewer output. If required independent evidence is unavailable, mark that gate **BLOCKED** and retain only honestly bounded partial coverage.
 
-Before spawning reviewers, state the intent in one clear paragraph from the user's message, commit messages, the PR description if one exists, and the code. If you're unsure about the intent, ask the user before proceeding.
+## Deliverable
 
-## Step 3, Spawn Reviewers
-
-Launch eligible independent reviews in one native `task` batch, using configured reviewer roles and explicit read-only scopes. Use `council-a` and `council-b` only for an explicit council request or the host's escalation trigger. Label reviewers A, B, etc., and record actual transcript identities rather than inferring family from role names. Honor approved budget and host delegation rules.
-
-A specifically required model/family unavailable or falling back makes that gate BLOCKED. Do not replace it with the author, a continuous advisor or a different family and call the gate passed. Other investigation may continue; report partial coverage honestly.
-
-Read `references/reviewer-prompt.md` and give every reviewer the same stated intent, pinned revision/base, diff or file contents, rubric from `references/rubric.md`, and code-quality lens from `references/code-quality-review.md`. Model and effort are resolved by OMP's configured roles.
-
-## Step 4, Synthesize
-
-As results come back, build a unified picture. Parse every reviewer's findings. Merge findings that describe the same issue differently, and note which models raised each one. Findings two or more models raised independently are the highest signal. Read a lone model's finding, but weight it accordingly. Note disagreements. If one model flags something and another explicitly says the opposite, that is context for the verdict.
-
-## Step 5, Lead Judgment
-
-You are the lead reviewer, a pragmatic senior engineer, not a neutral aggregator. Read `references/lead-judgment.md` for the full framework. Put every finding in one of four buckets, with the model(s) that raised it and a one-line rationale.
-
-- **Act on**. Real issues affecting correctness, security, or maintainability given the actual goals. They would block a real PR.
-- **Consider**. Legitimate, but you're not sure they outweigh the cost of addressing them now. Worth the user's attention.
-- **Noted**. Technically valid but not actionable. Context-dependent, premature optimization, or low-impact at this stage.
-- **Dismissed**. Wrong, nitpicky, or missing context, with a brief reason.
-
-## Output Format
-
-### Intent
-> [The stated intent paragraph from Step 2]
-
-### Reviewers
-- Reviewer [label]: [model name], [N findings] (one bullet per reviewer)
-
-### Act On
-[Each: description, which models raised it, why it matters.]
-
-### Consider
-[Each: description, which models raised it, the tradeoff.]
-
-### Noted
-[Brief list.]
-
-### Dismissed
-[Each with a brief rationale.]
-
-### Agreement Map
-[Where models agreed and diverged, and what that pattern tells us.]
+Use the [finding schema and verdict rules](references/review-contract.md). Include intent and requirements, revision/base and files reviewed, actionable findings, verification actually run, missing proof and residual risk. No findings is valid. Do not claim correctness or merge readiness while required evidence is incomplete. Explicit adversarial review adds the synthesis and attribution sections from its playbook; it does not replace this shared contract or auto-apply fixes.

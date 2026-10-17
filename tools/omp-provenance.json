@@ -312,5 +312,49 @@
   "activation": "explicit ownership-aware installation; no automatic routing hook or provider change",
   "reviewed": "2026-10-17",
   "action": "OMP-native runtime absorption under explicit user request",
-  "verification": "docs/omp-verification.md"
+  "verification": "docs/omp-verification.md",
+  "native_version": "0.9.90-omp.2",
+  "native_surface": {
+    "primary": [
+      "pstack-architect",
+      "pstack-arena",
+      "pstack-create-verification-skill",
+      "pstack-deslop",
+      "pstack-how",
+      "pstack-interrogate",
+      "pstack-maintain-verification-skill",
+      "pstack-poteto-help",
+      "pstack-poteto-mode",
+      "pstack-show-me-your-work",
+      "pstack-swarm",
+      "pstack-typescript-best-practices",
+      "pstack-unslop",
+      "pstack-why"
+    ],
+    "internal_guides": 50,
+    "canonical_sources": 64,
+    "legacy_roots": "disable only; never delete or move"
+  },
+  "absorbed_contracts": [
+    {
+      "name": "code-review",
+      "sha256": "4fc821a76cf23963b8cecad896624eab8a2ea9411027f8714505d3247dfdc9b8",
+      "form": "newly authored OMP integration; shared source remains untouched"
+    },
+    {
+      "name": "humanizer",
+      "sha256": "6ef23e313bb6fd43926540bdee4cd6044fead0c65d32c741900a3b3c1a000bf1",
+      "form": "newly authored OMP integration; shared source remains untouched"
+    },
+    {
+      "name": "ponytail",
+      "sha256": "9e43188c33623b713b6dff623bd643a673e7eb258c45325fd0f45a265122ad35",
+      "form": "newly authored OMP integration; shared source remains untouched"
+    },
+    {
+      "name": "omp-native-local-team-workflow",
+      "sha256": "387a0c3b5222afaee9fd4349edcd358d23155987bd8637c66bafb3bc52f0790f",
+      "form": "newly authored OMP integration; shared source remains untouched"
+    }
+  ]
 }
