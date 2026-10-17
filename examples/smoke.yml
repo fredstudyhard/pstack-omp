@@ -1,0 +1,14 @@
+# Explicit per-run overlay; never applied to user configuration.
+advisor:
+  enabled: false
+memory:
+  backend: off
+autolearn:
+  enabled: false
+  autoContinue: false
+providers:
+  cacheWarming: off
+retry:
+  enabled: false
+  modelFallback: false
+  usageAwareFallback: false

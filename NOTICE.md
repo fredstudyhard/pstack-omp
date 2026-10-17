@@ -1,5 +1,9 @@
 # NOTICE
 
+The current OMP-native adaptation is maintained in `skills/`; its provenance and intentional differences are recorded in [omp-porting.md](docs/omp-porting.md) and [omp-provenance.json](tools/omp-provenance.json). All original notices below are retained for attribution. Their previous-runtime layouts and mechanisms describe the historical selected port, not active OMP setup instructions.
+
+## Historical selected-port notice
+
 This plugin is a port of upstream MIT-licensed work. The port's modifications and additions are (c) 2026 Michael Denyer and are also released under the [MIT license](LICENSE). All upstream copyright notices and license terms are preserved.
 
 ## Upstream sources
@@ -26,7 +30,7 @@ This plugin is a port of upstream MIT-licensed work. The port's modifications an
 
 ## What changed in the port
 
-The port is editorial, not mechanical. [CHANGES.md](CHANGES.md) records each release's changes, and [`tools/substitutions.json`](tools/substitutions.json) lists the token rewrites with the reason for each.
+The port is editorial, not mechanical. [CHANGES.md](CHANGES.md) records its release history, and the historical [`tools/substitutions.json`](https://github.com/michael-denyer/pstack-claude/blob/5bd452955f8ded23ee81e022a19c537d6e523350/tools/substitutions.json) lists its token rewrites and reasons.
 
 Summary of structural changes:
 
@@ -38,11 +42,11 @@ Summary of structural changes:
 - `plugins/pstack/skills/babysit/` is independently authored as the Claude Code analog of Cursor's `/babysit` built-in. It has no upstream pstack equivalent; its workflow is informed by Cursor's public `/babysit` behavior. No code or prose was copied from any source.
 - `plugins/pstack/skills/poteto-mode/scripts/` is vendored from upstream (`watch-pr`, `orch`, `bootstrap.ts`, `package.json`, `bun.lock`). `worktree-audit.mjs` is a port-only rewrite of upstream's `worktree-audit.sh`, which `tools/upstream.json` excludes from sync; it reads the Claude Code, Codex, and Pi transcript directories instead of Cursor's and reports prunable worktrees. Port edits, each on the forked list `bun tools/sync.mjs --dry-run` prints: `bootstrap.ts` fails clearly under node and installs production dependencies only; `orch/store.ts` and `orch/orch.test.ts` carry the silent-failure fixes from #35; `package.json` typechecks the whole tree; `tsconfig.json` is port-only. Everything else is upstream's code under the upstream MIT license.
 - `plugins/pstack/agents/comment-sicko.md` is upstream's `Comment Sicko` agent, renamed to `comment-sicko` so the name works as a Claude Code `subagent_type`. The body is verbatim.
-- A Codex build shares the same `skills/` tree. It adds `plugins/pstack/.codex-plugin/plugin.json`, a root `.agents/plugins/marketplace.json`, and `plugins/pstack/skills/poteto-mode/references/codex-tools.md` (the Claude-to-Codex tool, model, built-in, and per-skill map). Affected skill entry points link to this map so direct invocation works without the optional Codex prompt stubs. See the [reference](docs/reference.md#codex).
+- The historical Codex build shared the same `skills/` tree with plugin manifests, prompt stubs and a Codex mapping. Its [reference](https://github.com/michael-denyer/pstack-claude/blob/5bd452955f8ded23ee81e022a19c537d6e523350/docs/reference.md#codex) is retained at the pinned selected-port source; these mechanisms are not installed by this OMP fork.
 
 ## Modifications
 
-Per the MIT license, modifications are permitted. Skill bodies have been edited to substitute Cursor-specific primitives with their Claude Code equivalents (the substitution rules are in [`tools/substitutions.json`](tools/substitutions.json)). All upstream copyright notices in source files (where present) are preserved.
+Per the MIT license, modifications are permitted. The historical port substituted Cursor primitives with Claude Code equivalents; its rules remain in the pinned [substitution source](https://github.com/michael-denyer/pstack-claude/blob/5bd452955f8ded23ee81e022a19c537d6e523350/tools/substitutions.json). This fork further adapts the workflows to OMP. All upstream copyright notices in source files (where present) are preserved.
 
 Port-authored files covered by this notice include:
 

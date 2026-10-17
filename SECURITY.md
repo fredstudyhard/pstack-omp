@@ -1,7 +1,13 @@
 # Security
 
-Report a vulnerability through [GitHub's private vulnerability reporting form](https://github.com/michael-denyer/pstack-claude/security/advisories/new), which is enabled on this repository. Please do not open a public issue for a vulnerability, because the issue tracker is public from the moment you press submit. A private advisory keeps the details between us until a fix is released.
+Do not publish secrets, exploit details or private data in public issues. Use this fork's [security reporting surface](https://github.com/fredstudyhard/pstack-omp/security) if private reporting is available. This fork does not claim that GitHub private vulnerability reporting is enabled. If it is unavailable, ask the maintainer for a private channel without posting technical vulnerability details.
 
-The skill tree, the hooks, the vendored bun scripts under `plugins/pstack/skills/poteto-mode/scripts`, and the CI workflows are all in scope. Anything that makes an agent run a command the user did not intend, exfiltrate a secret, or reach outside the repository it was pointed at counts, as does a supply-chain weakness in how this repository pins and installs its own dependencies. Findings in Claude Code itself belong to Anthropic, and findings in the upstream project this repository syncs from belong upstream.
+## Scope
 
-Only the latest release on `main` receives fixes. Plugin auto-update installs by version number, so a fix ships as a new release rather than as a patch to an older one, and there are no maintained release branches to back-port to.
+The native `skills/` tree, portable helpers, installer, dependency acquisition and bounded synthetic smoke tooling are in scope. Unintended capability use, secret exfiltration, broken ownership/path boundaries and supply-chain weaknesses merit review. Prompt instructions do not themselves enforce an OS sandbox or grant authority.
+
+Foreign plugin hooks, CI workflows, model registries and subprocess-agent shims are not active components of this fork. Issues in OMP itself belong with its maintainers; upstream-only defects should follow the owning upstream project's security policy rather than being attributed to this adaptation.
+
+## Supported source
+
+The maintained native branch is `omp-native`, currently `0.9.90-omp.1`. There is no plugin auto-update or maintained backport release line. Review fixes as candidates, verify their source identity and applicable behavior, then explicitly install. See [security design](docs/omp-security.md) and [maintenance/rollback](docs/omp-maintenance.md).

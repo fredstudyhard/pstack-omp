@@ -1,6 +1,15 @@
 # CHANGES
 
-This file is the release changelog, with one `## <version> - <title>` entry per release, newest first. The Cursor-to-Claude rewrite rules live in [`tools/substitutions.json`](tools/substitutions.json), and the [sync boundary](CONTRIBUTING.md#the-sync-boundary) in `CONTRIBUTING.md` defines how a change to upstream's skill content is declared.
+Native maintenance follows [CONTRIBUTING.md](CONTRIBUTING.md) and [the OMP maintenance guide](docs/omp-maintenance.md). Entries below `0.9.90-omp.1` are preserved historical upstream release notes; previous runtime mechanisms are not active OMP instructions.
+
+## 0.9.90-omp.1 - Complete OMP-native fork
+
+- Preserve all 54 original skills, ten selected-port workflows, 24 principles and 23 playbooks, with pinned provenance and original MIT notices.
+- Replace foreign plugin/hooks/models/subprocess agents with native OMP discovery, task, ask, todo, process, history and existing roles. Namespaced `pstack-*` skills avoid shadowing unrelated skills.
+- Add ownership-aware standard-library installation, collision/local-edit/symlink/hardlink defenses, deterministic installed sibling-path materialization and non-destructive disable/re-enable.
+- Retain portable helpers while removing implicit dependency installation, offline network access, private-history discovery and unrelated automount traversal. Require finite watcher deadlines and stop on authorization failure.
+- Add a synthetic CLI experience, a generated verification skill and bounded native journeys for investigation, repair, delegated review, verification authoring, pause and cold pickup.
+- Document bounded execution, equivalent manual security evidence, maintenance, rollback and unexercised integrations. No automatic merge, cloud wake, hidden scheduler or second model registry.
 
 ## 0.9.90 - Pi shows what a running agent is doing
 

@@ -1,4 +1,3 @@
-# A bare `bun test` runs the same suite CI does. The vendored poteto-mode
-# scripts carry their own dependencies and run from their own directory.
+# Root behavior tests; additional native-boundary tests are selected by bun run test.
 [test]
 root = "tests"

@@ -1,0 +1,316 @@
+{
+  "fork": "https://github.com/fredstudyhard/pstack-omp",
+  "port": {
+    "url": "https://github.com/michael-denyer/pstack-claude",
+    "commit": "5bd452955f8ded23ee81e022a19c537d6e523350",
+    "version": "0.9.90"
+  },
+  "bundled_components": {
+    "cursor-team-kit": {
+      "url": "https://github.com/cursor/plugins",
+      "commit": "e46364b8be46000b7df0f260550cd712afbb8d36",
+      "path": "cursor-team-kit/skills",
+      "license": "LICENSE-cursor-team-kit"
+    },
+    "thermos": {
+      "url": "https://github.com/cursor/plugins",
+      "commit": "118e73b0e196e4d49d5aade7ce6dd8985a621f68",
+      "path": "thermos",
+      "license": "LICENSE-thermos"
+    }
+  },
+  "original": {
+    "url": "https://github.com/cursor/plugins",
+    "commit": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
+    "path": "pstack",
+    "inventory": [
+      {
+        "name": "architect",
+        "sha": "29891f4b7ff7e4824d0742b15cf920bd428e12e8",
+        "path": "pstack/skills/architect"
+      },
+      {
+        "name": "arena",
+        "sha": "849b0b1191f81144ea3a7c7f117011f54d5c872f",
+        "path": "pstack/skills/arena"
+      },
+      {
+        "name": "automate-me",
+        "sha": "7d67c5679fbfc6b18cb582f1915be5a98f8e0d5f",
+        "path": "pstack/skills/automate-me"
+      },
+      {
+        "name": "benchmark-checklist",
+        "sha": "7c402481a0934533cb49cdce811b362cf99ef641",
+        "path": "pstack/skills/benchmark-checklist"
+      },
+      {
+        "name": "blast-radius",
+        "sha": "9437b18aef01b61d24b57d0fd3de24386398b643",
+        "path": "pstack/skills/blast-radius"
+      },
+      {
+        "name": "bro",
+        "sha": "53c3b2c5dc11fe0ee4156468da27505df9239dc6",
+        "path": "pstack/skills/bro"
+      },
+      {
+        "name": "correct",
+        "sha": "5ebee6f7fe9cd7f97b1c698dbbf4f19ed8c4c5f4",
+        "path": "pstack/skills/correct"
+      },
+      {
+        "name": "create-verification-skill",
+        "sha": "5aa2dae2726d09d219397fbbedc1e9500a239d28",
+        "path": "pstack/skills/create-verification-skill"
+      },
+      {
+        "name": "figure-it-out",
+        "sha": "7ba3256093e27828e829cf8f0ac63f476b32bf1e",
+        "path": "pstack/skills/figure-it-out"
+      },
+      {
+        "name": "how",
+        "sha": "3fd1c05ec675e7225d51e19e8ec80b92217adfbf",
+        "path": "pstack/skills/how"
+      },
+      {
+        "name": "in-your-own-words",
+        "sha": "e5ff93020dd4ed33b80d9df9a235d1945c676a0d",
+        "path": "pstack/skills/in-your-own-words"
+      },
+      {
+        "name": "interrogate",
+        "sha": "9768af06553215b2381710d5813796c4ddefe91f",
+        "path": "pstack/skills/interrogate"
+      },
+      {
+        "name": "ketchup",
+        "sha": "7227e74c1a773578fb12cbebd32da4dd8cf3e874",
+        "path": "pstack/skills/ketchup"
+      },
+      {
+        "name": "maintain-verification-skill",
+        "sha": "b6ce4dcdc378492f9acd55a4e56ae111204b4f11",
+        "path": "pstack/skills/maintain-verification-skill"
+      },
+      {
+        "name": "make-bot-ui",
+        "sha": "4fb9b8cdd991f08b1c3d7516a886af210bd312cd",
+        "path": "pstack/skills/make-bot-ui"
+      },
+      {
+        "name": "no-comments",
+        "sha": "3a09487f06a3fcf9e313d397a29f5d2efde9283f",
+        "path": "pstack/skills/no-comments"
+      },
+      {
+        "name": "poteto-help",
+        "sha": "8a438d9e4a67e066328a144eeb4883804e6fcf38",
+        "path": "pstack/skills/poteto-help"
+      },
+      {
+        "name": "poteto-mode",
+        "sha": "91b59b1e612004db8c648e9a62224ce29cfaf63f",
+        "path": "pstack/skills/poteto-mode"
+      },
+      {
+        "name": "principle-attack-the-premise",
+        "sha": "0b0de55b1f1e7a989a10dd8680f01a67ef378ebc",
+        "path": "pstack/skills/principle-attack-the-premise"
+      },
+      {
+        "name": "principle-boundary-discipline",
+        "sha": "743b098e6874a93b11e9f4d5843c79a243580ae2",
+        "path": "pstack/skills/principle-boundary-discipline"
+      },
+      {
+        "name": "principle-build-the-lever",
+        "sha": "dd1ee184f4f4d585e42a006f0a1837afdbb3d627",
+        "path": "pstack/skills/principle-build-the-lever"
+      },
+      {
+        "name": "principle-encode-lessons-in-structure",
+        "sha": "1e42cd4db78cc95d0297dc0264c1a74439c90be9",
+        "path": "pstack/skills/principle-encode-lessons-in-structure"
+      },
+      {
+        "name": "principle-exhaust-the-design-space",
+        "sha": "3d93455dc2b3c0d9954e20384ed8569138bd1eb0",
+        "path": "pstack/skills/principle-exhaust-the-design-space"
+      },
+      {
+        "name": "principle-experience-first",
+        "sha": "2dbcf0d0d4473ca3a93d17e2167b587cfec7f6da",
+        "path": "pstack/skills/principle-experience-first"
+      },
+      {
+        "name": "principle-explain-the-number",
+        "sha": "2f468162c9ce85478f1fb1198149646a2ef0f735",
+        "path": "pstack/skills/principle-explain-the-number"
+      },
+      {
+        "name": "principle-fix-root-causes",
+        "sha": "f1075eead43f95cd9896381345ff28f0da7e1aea",
+        "path": "pstack/skills/principle-fix-root-causes"
+      },
+      {
+        "name": "principle-foundational-thinking",
+        "sha": "5880f6577956b14ee4ee89cb72c03fd8bd82a5ac",
+        "path": "pstack/skills/principle-foundational-thinking"
+      },
+      {
+        "name": "principle-guard-the-context-window",
+        "sha": "bf09c18e975ded9dc137631c6529db941dda24a2",
+        "path": "pstack/skills/principle-guard-the-context-window"
+      },
+      {
+        "name": "principle-laziness-protocol",
+        "sha": "cb8aa817489838fe615d0dfe321d263e8a3f1faa",
+        "path": "pstack/skills/principle-laziness-protocol"
+      },
+      {
+        "name": "principle-make-operations-idempotent",
+        "sha": "5111ac1acc6584dad178af96174140ee5b29bca4",
+        "path": "pstack/skills/principle-make-operations-idempotent"
+      },
+      {
+        "name": "principle-migrate-callers-then-delete-legacy-apis",
+        "sha": "cf45195158110569ac6a97d0e8dbed04531373ed",
+        "path": "pstack/skills/principle-migrate-callers-then-delete-legacy-apis"
+      },
+      {
+        "name": "principle-minimize-reader-load",
+        "sha": "f64929f93ffd334f36699b83f53ee7155c4a2063",
+        "path": "pstack/skills/principle-minimize-reader-load"
+      },
+      {
+        "name": "principle-model-the-domain",
+        "sha": "6ea2f64ebf635cb2eb8391197e40f32e5f841557",
+        "path": "pstack/skills/principle-model-the-domain"
+      },
+      {
+        "name": "principle-never-block-on-the-human",
+        "sha": "d2578043c77706411c48c5b7cfe03dc3d45e3b15",
+        "path": "pstack/skills/principle-never-block-on-the-human"
+      },
+      {
+        "name": "principle-outcome-oriented-execution",
+        "sha": "8d87411f36c74111e5e54a804dda727e2c034914",
+        "path": "pstack/skills/principle-outcome-oriented-execution"
+      },
+      {
+        "name": "principle-prove-it-works",
+        "sha": "41e2142b6479db1dfdb9c2a3b856a895af61089d",
+        "path": "pstack/skills/principle-prove-it-works"
+      },
+      {
+        "name": "principle-redesign-from-first-principles",
+        "sha": "20822072ed14c75eed7f527f734c5d347c43845e",
+        "path": "pstack/skills/principle-redesign-from-first-principles"
+      },
+      {
+        "name": "principle-separate-before-serializing-shared-state",
+        "sha": "89505c32f2d472da415e7696a6893ad28e108c5f",
+        "path": "pstack/skills/principle-separate-before-serializing-shared-state"
+      },
+      {
+        "name": "principle-sequence-verifiable-units",
+        "sha": "c1b345dcea21e3d58e7012f8e6547974d295fb3a",
+        "path": "pstack/skills/principle-sequence-verifiable-units"
+      },
+      {
+        "name": "principle-subtract-before-you-add",
+        "sha": "760f5b131e920c0e9914a0ef8cb4b875918af31a",
+        "path": "pstack/skills/principle-subtract-before-you-add"
+      },
+      {
+        "name": "principle-test-behavior-not-implementation",
+        "sha": "7fa3d5dba8496dcd08278a99903a2dfb58a2e179",
+        "path": "pstack/skills/principle-test-behavior-not-implementation"
+      },
+      {
+        "name": "principle-type-system-discipline",
+        "sha": "32850aaddd70478a6dacb153bbcef8532bf7d626",
+        "path": "pstack/skills/principle-type-system-discipline"
+      },
+      {
+        "name": "recall",
+        "sha": "4dd0f8b495008fc106b2314401f91bc9cf96ed7f",
+        "path": "pstack/skills/recall"
+      },
+      {
+        "name": "reflect",
+        "sha": "e44a51da42eb95e3ab2d13231fe942e218424f66",
+        "path": "pstack/skills/reflect"
+      },
+      {
+        "name": "setup-pstack",
+        "sha": "79a953b4d60fdd19392a39d7e11e612d372c6910",
+        "path": "pstack/skills/setup-pstack"
+      },
+      {
+        "name": "sharpen",
+        "sha": "a75511d0e89e7e07c10974ea7ff2786a8c93519a",
+        "path": "pstack/skills/sharpen"
+      },
+      {
+        "name": "show-me-your-work",
+        "sha": "118c0642360ab53de52b3f8dd044102567dbcaa9",
+        "path": "pstack/skills/show-me-your-work"
+      },
+      {
+        "name": "swarm",
+        "sha": "227d0b45a15d14d47cdefd096af2a94c12e7d533",
+        "path": "pstack/skills/swarm"
+      },
+      {
+        "name": "tdd",
+        "sha": "1064da72ceca07bf7f36bddebada585bb59da7bc",
+        "path": "pstack/skills/tdd"
+      },
+      {
+        "name": "teach",
+        "sha": "3ee517292dae0476dc516f9f3805c08fb943c6ff",
+        "path": "pstack/skills/teach"
+      },
+      {
+        "name": "technical-writing",
+        "sha": "f35560fd015d95ae92eb3c7414d3a48065299dfa",
+        "path": "pstack/skills/technical-writing"
+      },
+      {
+        "name": "typescript-best-practices",
+        "sha": "319e39dfd8c0da0602db8d50ce6e48b0945bbf3a",
+        "path": "pstack/skills/typescript-best-practices"
+      },
+      {
+        "name": "unslop",
+        "sha": "4e572dd70e5557f490e3991c52ea58f0dcee8936",
+        "path": "pstack/skills/unslop"
+      },
+      {
+        "name": "why",
+        "sha": "ba549f92c3a8dc1506b21674e8794eb980019bf3",
+        "path": "pstack/skills/why"
+      }
+    ]
+  },
+  "reference_omp_port": {
+    "url": "https://github.com/IgorKhramtsov/pstack-skills",
+    "commit": "ce47cecd1514e630d9427435240d005c1b0dcb9a",
+    "copied": false
+  },
+  "licenses": [
+    "LICENSE",
+    "LICENSE-cursor-team-kit",
+    "LICENSE-thermos",
+    "NOTICE.md"
+  ],
+  "risk_tier": "High: bundled local executable helpers; no auto-exec extension/hook installed",
+  "review_trigger": "Any upstream change, helper/dependency/install change, or OMP major/minor runtime change",
+  "activation": "explicit ownership-aware installation; no automatic routing hook or provider change",
+  "reviewed": "2026-10-17",
+  "action": "OMP-native runtime absorption under explicit user request",
+  "verification": "docs/omp-verification.md"
+}

@@ -1,21 +1,19 @@
-# Session-local Claude Code state — not part of the plugin
-.remember/
-
-# OS / editor
+# OS and editor state
 .DS_Store
 *.swp
 *.swo
-
-# Editor and per-user Claude Code state
 .vscode/
 *.code-workspace
-.claude/settings.local.json
 
-# bun deps for the vendored poteto-mode scripts (bootstrap.ts installs them on first run)
-plugins/pstack/skills/poteto-mode/scripts/node_modules/
+# Dependencies and Python runtime state
+node_modules/
+__pycache__/
+*.pyc
 
-# bun installs the typebox peer for the Pi extension tests
-/node_modules/
+# Internal evidence, evaluation matrices, plans and runtime state
+.audit/
+.omp/
+/docs/omp-work-order.md
 
-# Lake build output for the Lean models
+# Optional formal verification build output
 /lean/.lake/

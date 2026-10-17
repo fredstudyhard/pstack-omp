@@ -1,103 +1,78 @@
-# pstack
+# pstack for OMP
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?logo=buy-me-a-coffee&logoColor=white)](https://buymeacoffee.com/codenyer)
+Lauren Tan（poteto）的 pstack 工程工作流程，完整移植到 **Oh My Pi（OMP）**。以 Michael Denyer 的維護版為 fork 基底，改用 OMP 原生工具與角色，不需要 Claude Code、Pi extension 或另一份模型設定。
 
-Lauren Tan's [pstack](https://github.com/cursor/plugins/tree/main/pstack) is an opinionated Cursor skill stack that improves agent outcomes. This is a port for Claude Code, Codex, Pi, GitHub Copilot and other agent harnesses. It tracks upstream and also carries named policy forks, each declared in [`tools/forks.json`](tools/forks.json).
+## 開始體驗
 
-Tell `poteto-mode` your goal and it will invoke the correct workflow for the task. It keeps your code concise, simple and verified.
+需求：OMP、Python 3、Git。Bun 與 GitHub CLI 只用於對應的 PR／長任務 helpers。
 
-For concurrency bugs and invariants that tests cannot reach, see the separate [agent-formal-verify](https://github.com/michael-denyer/agent-formal-verify) plugin, which adds TLA+ model checking and Lean proofs.
+```sh
+python3 tools/omp.py doctor
+python3 tools/omp.py check
+python3 tools/omp.py install --dry-run
+python3 tools/omp.py install
+```
 
-## Install
+需要完整的 PR watcher／orchestration helpers 時，先明確取得已審查、固定版本的 production dependency，再重新 materialize：
 
-### Claude Code
+```sh
+(cd skills/poteto-mode/scripts && bun install --frozen-lockfile --production --ignore-scripts)
+python3 tools/omp.py install
+```
 
-Run in Claude Code:
+安裝器只會連同固定的 `commander@14.0.0` 複製必要 dependency，不執行安裝／lifecycle scripts；缺依賴時 helpers 會停止並給出 setup 指令，不自行上網。
+
+安裝只會寫入自己擁有的 `~/.omp/agent/skills/pstack-*`。既有同名且非本工具擁有的路徑會阻擋整次安裝；不修改模型、provider、chezmoi 或其他 runtime 設定。重新啟動 OMP，或開新 session，再使用：
 
 ```text
-/plugin marketplace add michael-denyer/pstack-claude
-/plugin install pstack@pstack-claude
+/skill:pstack-poteto-mode 修復這個問題，先實際重現，再找根因、修正與驗證。
+/skill:pstack-how 說明這個專案的請求如何進入並寫入資料。
+/skill:pstack-interrogate 審查目前的變更，列出有證據的問題。
+/skill:pstack-poteto-help 我想做一次效能調查，該如何開始？
 ```
 
-### Codex
+不需要開啟全域 always-on 模式。明確進入 pstack 的任務會使用它的 playbook；一般聊天與原有技能不被取代。
 
-Run in your terminal:
+### 一個可親自操作的修復任務
 
-```shell
-codex plugin marketplace add michael-denyer/pstack-claude
-codex plugin add pstack@pstack-claude
+```sh
+python3 tools/demo.py
 ```
 
-### Pi
+它建立一個獨立的合成 issue-desk Git repo，提供 workspace 與啟動指令。跟著輸出進入 OMP，看它透過真正 CLI 重現分頁錯誤、修正、驗證，再交付結果。沒有真實帳號、資料或外部 API；不會改動你的產品 repo。每次執行建立新工作區，不覆蓋既有進度。
 
-Run in your terminal:
+Repo 隨附可直接執行的 [verification skill 範例](examples/issue-desk/verification/SKILL.md)。可觀察 28 次真正 CLI 驗證與檔案副作用檢查：
 
-```shell
-pi install git:github.com/michael-denyer/pstack-claude
+```sh
+python3 examples/issue-desk/verification/scripts/verify.py
 ```
 
-The package loads the skills and the pstack Pi extension, which adds the subagent, question, and wake-up tools the skills use, plus `/loop` and the routing instruction. Invoke a skill with `/skill:<name>`.
+## 完整範圍
 
-### GitHub Copilot
+- 54 個原版 skills 全部保留，包括 24 個 principles；另保留維護版的 10 個公開 workflows。
+- 23 個任務 playbooks，涵蓋調查、bug、功能、重構、效能、架構比較、驗證、PR、長任務、交接與恢復。
+- `arena` 比較解法，`swarm` 分割工作；使用 OMP 原生 `task` 與既有角色。
+- 真實介面驗證、專案 verification skill／feature map、盲評流程與可恢復 checkpoint。
+- Cursor bot routine 改為受控的 OMP RPC 控制頁 authoring workflow；無背景 owner 時使用明確 checkpoint/resume，不宣稱雲端自動喚醒。
 
-Run in your terminal:
+這些是 workflow 能力，不是自帶每個產品的權限、整合或品質保證。使用前請依 [驗證入口與覆蓋界線](docs/omp-verification.md) 執行；實際產品或發布另行驗收。
 
-```shell
-copilot plugin marketplace add michael-denyer/pstack-claude
-copilot plugin install pstack@pstack-claude
+## 安全與回復
+
+上游指示不授予外部寫入、憑證存取、發布、刪除或付費資源權限。必需的獨立審查無法執行時，該 gate 保持關閉。沒有自動 merge、cron、無限 polling、偷偷重試或第二套模型 registry。
+
+```sh
+python3 tools/omp.py disable
 ```
 
-This installs pstack for the Copilot CLI and the GitHub Copilot app, which share `~/.copilot`. Start a new session afterwards. Copilot ships no default pstack models, so the first skill that needs one runs `setup-pstack` to pick from the models your account lists, and later sessions reuse that choice.
+`disable` 僅把本工具擁有的 entrypoints 標為停用，**不刪除或移動 `.omp` 內容**。新 session 不再發現它們。重新執行 `install` 可啟用已審查的來源；若本機安裝檔有額外修改，會停止而不覆蓋。
 
-The Copilot build is tested on Copilot CLI 1.0.87 through 1.0.92. On those versions the routing hook's context reaches the session alongside other plugins' session-start context. If a later version keeps only one plugin's context, `setup-pstack` offers a [standing instruction](plugins/pstack/skills/setup-pstack/copilot.md#wire-it-in) for `~/.copilot/copilot-instructions.md` instead. On 1.0.92, once the CLI caches its computer-use experiment assignment, `copilot -p` sessions list no plugin skills and a `skill` call returns "Skill not found". Interactive sessions, the hooks, and the agents are unaffected.
+## 維護
 
-Run `setup-pstack` to change model defaults, set a reasoning effort per role (for example `arena runners: opus @xhigh, fable @max`, which Claude Code dispatches through the plugin's `pstack:effort-<level>` or `pstack:poteto-agent-<level>` agents; roles without a level keep the session's effort unless the sheet's `default effort` line names one), or turn automatic routing off. The plugin installs the routing hook on Claude Code, Codex, and GitHub Copilot; Codex asks you to trust it through `/hooks` before it runs. On Pi the extension injects the same routing instruction. In Claude Code and the Copilot CLI, use `/pstack:setup-pstack`.
+- [原生 runtime contract](skills/poteto-mode/references/omp-runtime.md)
+- [完整功能與來源清單](docs/omp-capabilities.json)
+- [移植決策與差異](docs/omp-porting.md)
+- [更新、驗證與回復](docs/omp-maintenance.md)
+- [來源、版本與完整性](tools/omp-provenance.json)
 
-### Other harnesses
-
-OpenCode (the CLI and the desktop app), Gemini CLI, Prime Agent, and skills-only Codex installs read skills from `~/.agents/skills/`. Run in your terminal:
-
-```shell
-git clone https://github.com/michael-denyer/pstack-claude
-cd pstack-claude
-mkdir -p ~/.agents/skills
-for s in plugins/pstack/skills/*/; do
-  target=~/.agents/skills/"$(basename "$s")"
-  test -e "$target" || test -L "$target" || ln -s "$(pwd)/$s" "$target"
-done
-```
-
-To update, run `git pull` in the clone, then run the `for` loop again to link skills added since the last run. These installs have no routing hook, so ask for `poteto-mode` by name or add a standing instruction to the harness's instruction file. See [shared installation](docs/reference.md#shared-skills-installation) for per-harness notes and uninstalling.
-
-## Getting started
-
-```text
-Use poteto-mode to fix the search filter resetting when I change pages.
-```
-
-For a bug, it reproduces the failure, uses `how` and `why` to investigate, delegates the fix, then reruns the failing case. If the fix crosses a function boundary, it brings in `architect` before implementation. You receive the fix and the failing and passing evidence.
-
-[Other playbooks](plugins/pstack/skills/poteto-mode/SKILL.md#playbooks) cover planning, features, refactoring, performance issues, investigations, prototypes, PR maintenance, shipping, and longer projects.
-
-![poteto-mode on Claude Code, Codex, and Pi turns a request into verified work. Choose a playbook, plan and delegate with architect, arena, or swarm, then review and verify with interrogate, tests, and measurements. Project playbooks customize the workflow, and setup-pstack configures the model and reasoning effort per role. Supporting skills include how, why, and unslop.](assets/pstack-overview.png)
-
-## Details
-
-- [Skills and slash commands](docs/reference.md#slash-commands)
-- [Runtime setup](docs/reference.md#runtime-support)
-- [Models and dependencies](docs/reference.md#configuration-and-dependencies)
-- [Maintenance and port scope](docs/reference.md#maintenance)
-
-## Data handling
-
-pstack has no server or telemetry. Anything its skills ask your agent to read, including session transcripts, goes to your model provider. Scripts run locally, and PR tools use your GitHub CLI login.
-
-## Contributing
-
-Thanks for helping make this port better. Bug reports, documentation fixes, and runtime improvements are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the checks and where your change belongs. Report vulnerabilities privately as described in [SECURITY.md](SECURITY.md).
-
-To support maintenance of this port, [buy the maintainer a coffee](https://buymeacoffee.com/codenyer).
-
-## License
-
-This port, including its modifications and additions, is also [MIT-licensed](LICENSE), © 2026 Michael Denyer. Original pstack © 2026 Lauren Tan; imported cursor-team-kit and thermos skills © 2026 Cursor. See [LICENSE-cursor-team-kit](LICENSE-cursor-team-kit), [LICENSE-thermos](LICENSE-thermos), and [NOTICE.md](NOTICE.md).
+原始 pstack © Lauren Tan；先前移植與補充 © Michael Denyer、Cursor。保留 [MIT license](LICENSE)、[Cursor team kit license](LICENSE-cursor-team-kit)、[thermos license](LICENSE-thermos) 與 [NOTICE](NOTICE.md)。本 fork 非 Cursor、OMP 或原作者官方發行版。

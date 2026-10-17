@@ -8,7 +8,7 @@ import { join } from "node:path";
 // default and the test read the killed child as code null (run 36492567721).
 setDefaultTimeout(30_000);
 
-const mode = join(import.meta.dir, "../plugins/pstack/skills/poteto-mode");
+const mode = join(import.meta.dir, "../skills/poteto-mode");
 const playbook = readFileSync(join(mode, "playbooks/multi-phase-plan.md"), "utf8");
 const template = playbook.match(/^````markdown\n([\s\S]*?)^````$/m);
 if (!template) throw new Error("Multi-phase playbook has no plan skeleton");
@@ -58,9 +58,9 @@ describe("plan checklists", () => {
   for (const heading of [
     "### Arm the program",
     "### Spawn owners",
-    "### PR mechanics, for every PR",
-    "### Verdict and merge, for every PR",
-    "### Boot recipe, for every live lane",
+    "### PR mechanics",
+    "### Verdict and merge",
+    "### Boot recipe",
   ]) {
     test(`${heading} requires work, not just prose`, () => {
       const plan = editSection(heading, (body) => body.replaceAll("- [ ] ", ""));
@@ -88,6 +88,49 @@ describe("plan checklists", () => {
     const result = run(plan);
     expect(result.code).toBe(1);
     expect(result.out).toContain("Close the program has no box");
+  });
+
+  test("program safety controls cannot be replaced by fenced examples", () => {
+    const result = run(editSection("### Arm the program", (body) => "\n- [ ] Prepare.\n```markdown\n" + body + "\n```\n"));
+    expect(result.code).toBe(1);
+    expect(result.out).toContain("Program checklist lacks bounded supervised segment");
+    expect(result.out).toContain("Program checklist lacks stop conditions");
+  });
+
+  for (const [name, pattern, message] of [
+    ["deadline", /^.*\bfinite\b.*\bdeadline\b.*\n/gim, "bounded supervised segment"],
+    ["checkpoint", /^.*\bcheckpoint\b.*\n/gim, "explicit checkpoint and resume"],
+  ]) {
+    test(`missing ${name} safety control fails`, () => {
+      const result = run(editSection("### Arm the program", (body) => body.replace(pattern, "")));
+      expect(result.code).toBe(1);
+      expect(result.out).toContain(`Program checklist lacks ${message}`);
+    });
+  }
+
+  for (const block of ["Files.", "Build.", "You see.", "Verify, unit.", "Verify, live.", "Verify, perf.", "Review gate.", "Merge."]) {
+    test(`missing ${block} block fails`, () => {
+      expect(run(skeleton.replace(`**${block}**`, "**Removed.**")).code).toBe(1);
+    });
+  }
+
+  test("ten numbered live lanes each require an artifact and pass predicate", () => {
+    for (const plan of [
+      skeleton.replace("- [ ] Lane 10.", "- [ ] Lane 9."),
+      skeleton.replace("Save `<evidence-path>`.", "Record evidence."),
+      skeleton.replace("Pass when <predicate>.", "Inspect result."),
+    ]) expect(run(plan).code).toBe(1);
+  });
+
+  test("verification cannot omit live or perf completion", () => {
+    expect(run(skeleton.replaceAll("unit, live, and perf boxes are all checked", "unit boxes are all checked")).code).toBe(1);
+  });
+
+  test("equivalent verification policy wording is accepted", () => {
+    expect(run(skeleton.replaceAll(
+      "Tests alone are not sufficient verification. A PR is verified only when its unit, live, and perf boxes are all checked.",
+      "Tests alone are insufficient. Verification requires unit, live and perf evidence all complete.",
+    )).code).toBe(0);
   });
 });
 
